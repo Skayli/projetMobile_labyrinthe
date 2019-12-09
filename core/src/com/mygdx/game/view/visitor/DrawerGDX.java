@@ -7,7 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.Wall;
 import com.mygdx.game.view.VisitorWorld;
+
+import mesmaths.geometrie.base.Vecteur;
 
 /**
  * Classe de dessin utilisant GDX
@@ -31,31 +34,41 @@ public class DrawerGDX extends VisitorWorld {
     @Override
     public void draw(GameWorld game) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+
+
 
         batch.setProjectionMatrix(camera.combined);
         shape.setProjectionMatrix(camera.combined);
 
         batch.begin();
 
-        // EXemple de comment dessiner des formes
-        shape.setColor(Color.CORAL);
-        shape.begin(ShapeRenderer.ShapeType.Line);
-        Gdx.gl20.glLineWidth(10);
-        shape.line(GameWorld.WIDTH/3, GameWorld.HEIGHT/3,2*GameWorld.WIDTH/3, 2*GameWorld.HEIGHT/3);
-        shape.end();
+        Gdx.gl20.glLineWidth(5);
 
-        shape.setColor(Color.GREEN);
-        shape.begin(ShapeRenderer.ShapeType.Line);
-        shape.curve(0,GameWorld.HEIGHT,0,0,GameWorld.WIDTH,0,GameWorld.WIDTH,GameWorld.HEIGHT,100);
-        shape.end();
+        //Dessin de la bille contrôlée par le joueur
+        com.mygdx.game.model.color.Color billeColor = game.getBall().getColor();
+        Color ballColor = new Color(billeColor.getRed(), billeColor.getGreen(), billeColor.getBlue(), 1);
+        Vecteur positionBille = game.getBall().getPosition();
 
-        shape.setColor(Color.BLUE);
+        shape.setColor(ballColor);
         shape.begin(ShapeRenderer.ShapeType.Filled);
-        shape.ellipse(0,0,1000,1000);
+        shape.circle((float) positionBille.x, (float) positionBille.y, game.getBall().getRadius());
+        shape.circle(7500, 3250, game.getBall().getRadius());
         shape.end();
 
+        //Dessin du contour de la bille
+        shape.setColor(Color.BLACK);
+        shape.begin(ShapeRenderer.ShapeType.Line);
+        shape.circle((float) positionBille.x, (float) positionBille.y, game.getBall().getRadius());
+        shape.end();
 
+        //Dessin des murs du level
+        shape.setColor(Color.BLACK);
+        for(Wall wall : game.getCurrentLevel().getWalls()) {
+            shape.begin(ShapeRenderer.ShapeType.Line);
+            shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
+            shape.end();
+        }
 
         batch.end();
     }

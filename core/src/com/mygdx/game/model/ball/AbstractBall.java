@@ -10,14 +10,14 @@ import mesmaths.geometrie.base.Vecteur;
 public abstract class AbstractBall {
 
     protected double weight;
-    protected int diameter;
+    protected int radius;
     protected Vecteur position;
     protected Vecteur velocity;
     protected Color color;
 
     public AbstractBall(Vecteur position, int diameter, double weight, Color color) {
         this.position = position;
-        this.diameter = diameter;
+        this.radius = diameter;
         this.weight = weight;
         this.velocity = new Vecteur(0,0);
         this.color = color;
@@ -41,12 +41,12 @@ public abstract class AbstractBall {
         this.weight = weight;
     }
 
-    public int getDiameter() {
-        return diameter;
+    public int getRadius() {
+        return radius;
     }
 
-    public void setDiameter(int diameter) {
-        this.diameter = diameter;
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     public Vecteur getPosition() {
@@ -55,6 +55,11 @@ public abstract class AbstractBall {
 
     public void setPosition(Vecteur position) {
         this.position = position;
+    }
+
+    public void setPosition(double x, double y) {
+        this.position.x = x;
+        this.position.y = y;
     }
 
     public Vecteur getVelocity() {

@@ -9,7 +9,7 @@ import mesmaths.geometrie.base.Vecteur;
 public class GameBall extends AbstractBall {
 
     //Données relatives aux GameBall
-    private static final int gameBallDiameter = 500;
+    private static final int gameBallDiameter = 300;
     private static final double gameBallWeight = 5;
     private static final Color gameBallColor = Color.BLUE();
 

@@ -29,6 +29,18 @@ public class GameWorld extends Observable {
         this.notifyObservers(this);
     }
 
+    // --------------- \\
+    // --- Getters --- \\
+    // --------------- \\
+
+    public GameBall getBall() {
+        return ball;
+    }
+
+    public AbstractLevel getCurrentLevel() {
+        return currentLevel;
+    }
+
     // ---------------------------------- \\
     // --- Fin de la classe GameWorld --- \\
     // ---------------------------------- \\
