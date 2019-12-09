@@ -1,5 +1,6 @@
 package com.mygdx.game.model.ball;
 
+import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.color.Color;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -16,12 +17,12 @@ public class GameBall extends AbstractBall {
     // --------------------- \\
     // --- Constructeurs --- \\
     // --------------------- \\
-    public GameBall() {
-        super(new Vecteur(0,0), gameBallDiameter, gameBallWeight, gameBallColor);
+    public GameBall(GameWorld game) {
+        super(game, new Vecteur(0,0), gameBallDiameter, gameBallWeight, gameBallColor);
     }
 
-    public GameBall(Vecteur position) {
-        super(position, gameBallDiameter, gameBallWeight, gameBallColor);
+    public GameBall(GameWorld game, Vecteur position) {
+        super(game, position, gameBallDiameter, gameBallWeight, gameBallColor);
     }
 
     // Gestion du déplacement d'une GameBall

@@ -1,5 +1,6 @@
 package com.mygdx.game.model.ball;
 
+import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.color.Color;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -17,12 +18,12 @@ public class CannonBall extends AbstractBall {
     // --- Constructeurs --- \\
     // --------------------- \\
 
-    public CannonBall(Vecteur position) {
-        super(position, 100, 1, Color.RED());
+    public CannonBall(GameWorld game, Vecteur position) {
+        super(game, position, 100, 1, Color.RED());
     }
 
-    public CannonBall() {
-        super(new Vecteur(0,0), 100, 1, Color.RED());
+    public CannonBall(GameWorld game) {
+        super(game, new Vecteur(0,0), 100, 1, Color.RED());
     }
 
     @Override

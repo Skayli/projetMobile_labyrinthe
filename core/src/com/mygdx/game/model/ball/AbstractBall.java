@@ -1,5 +1,7 @@
 package com.mygdx.game.model.ball;
 
+import com.badlogic.gdx.Game;
+import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.color.Color;
 
 import mesmaths.geometrie.base.Vecteur;
@@ -14,8 +16,10 @@ public abstract class AbstractBall {
     protected Vecteur position;
     protected Vecteur velocity;
     protected Color color;
+    protected GameWorld game;
 
-    public AbstractBall(Vecteur position, int radius, double weight, Color color) {
+    public AbstractBall(GameWorld game, Vecteur position, int radius, double weight, Color color) {
+        this.game = game;
         this.position = position;
         this.radius = radius;
         this.weight = weight;
