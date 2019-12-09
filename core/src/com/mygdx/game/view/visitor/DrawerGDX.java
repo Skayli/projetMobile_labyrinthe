@@ -53,7 +53,6 @@ public class DrawerGDX extends VisitorWorld {
         shape.setColor(ballColor);
         shape.begin(ShapeRenderer.ShapeType.Filled);
         shape.circle((float) positionBille.x, (float) positionBille.y, game.getBall().getRadius());
-        shape.circle(7500, 3250, game.getBall().getRadius());
         shape.end();
 
         //Dessin du contour de la bille
