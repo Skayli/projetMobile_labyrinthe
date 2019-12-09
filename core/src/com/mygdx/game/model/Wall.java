@@ -26,6 +26,14 @@ public class Wall {
         this.ending = ending;
     }
 
+    public static Wall createWall(double beginningX, double beginningY, double endingX, double endingY) {
+        return new Wall(beginningX, beginningY, endingX, endingY);
+    }
+
+    public static Wall createWall(Vecteur beginning, Vecteur ending) {
+        return new Wall(beginning, ending);
+    }
+
     public static ArrayList<Wall> createCurve(Vecteur beginning, Vecteur ending, Vecteur controlPoint, double precision) {
         ArrayList<Wall> curve = new ArrayList<>();
         double tVariation = (double) 1/precision;

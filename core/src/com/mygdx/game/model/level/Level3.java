@@ -14,6 +14,7 @@ public class Level3 extends AbstractLevel {
         super(gameWorld);
 
         //Positionnement de la bille
+        gameWorld.getBall().setPosition(1250,GameWorld.HEIGHT-1000);
 
         //Création du canon
         this.cannon = new Cannon();

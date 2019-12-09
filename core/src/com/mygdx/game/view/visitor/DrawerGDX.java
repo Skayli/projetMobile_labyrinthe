@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.view.VisitorWorld;
 
@@ -66,6 +67,13 @@ public class DrawerGDX extends VisitorWorld {
         for(Wall wall : game.getCurrentLevel().getWalls()) {
             shape.begin(ShapeRenderer.ShapeType.Line);
             shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
+            shape.end();
+        }
+
+        //Dessin des trous
+        for(Hole hole : game.getCurrentLevel().getHoles()) {
+            shape.begin(ShapeRenderer.ShapeType.Filled);
+            shape.circle((float) hole.getPosition().x, (float) hole.getPosition().y, hole.getRadius());
             shape.end();
         }
 

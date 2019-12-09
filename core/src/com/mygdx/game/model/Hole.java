@@ -9,21 +9,21 @@ import mesmaths.geometrie.base.Vecteur;
 public class Hole {
 
     private Vecteur position;
-    private int diameter;
+    private int radius;
     private Color color = Color.BLACK();
 
     // --------------------- \\
     // --- Constructeurs --- \\
     // --------------------- \\
 
-    public Hole(double x, double y, int diameter) {
+    public Hole(double x, double y, int radius) {
         this.position = new Vecteur(x, y);
-        this.diameter = diameter;
+        this.radius = radius;
     }
 
     public Hole(Vecteur position, int diameter) {
         this.position = position;
-        this.diameter = diameter;
+        this.radius = diameter;
     }
 
     // ------------------------- \\
@@ -38,12 +38,12 @@ public class Hole {
         this.position = position;
     }
 
-    public int getDiameter() {
-        return diameter;
+    public int getRadius() {
+        return radius;
     }
 
-    public void setDiameter(int diameter) {
-        this.diameter = diameter;
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     public Color getColor() {

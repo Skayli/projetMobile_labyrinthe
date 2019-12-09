@@ -15,9 +15,9 @@ public abstract class AbstractBall {
     protected Vecteur velocity;
     protected Color color;
 
-    public AbstractBall(Vecteur position, int diameter, double weight, Color color) {
+    public AbstractBall(Vecteur position, int radius, double weight, Color color) {
         this.position = position;
-        this.radius = diameter;
+        this.radius = radius;
         this.weight = weight;
         this.velocity = new Vecteur(0,0);
         this.color = color;
