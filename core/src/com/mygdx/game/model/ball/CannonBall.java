@@ -19,11 +19,11 @@ public class CannonBall extends AbstractBall {
     // --------------------- \\
 
     public CannonBall(GameWorld game, Vecteur position) {
-        super(game, position, 100, 1, Color.RED());
+        super(game, position, 100, 250, Color.RED());
     }
 
     public CannonBall(GameWorld game) {
-        super(game, new Vecteur(0,0), 100, 1, Color.RED());
+        super(game, new Vecteur(0,0), 100, 250, Color.RED());
     }
 
     @Override

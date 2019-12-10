@@ -9,6 +9,7 @@ import com.mygdx.game.model.color.Color;
 import mesmaths.cinematique.Cinematique;
 import mesmaths.cinematique.Collisions;
 import mesmaths.geometrie.base.Vecteur;
+import mesmaths.mecanique.MecaniquePoint;
 
 /**
  * Classe représentant une bille de jeu (celle contrôlée par le joueur)
@@ -17,7 +18,7 @@ public class GameBall extends AbstractBall {
 
     //Données relatives aux GameBall
     private static final int gameBallRadius = 250;
-    private static final double gameBallWeight = 5;
+    private static final double gameBallWeight = 1000;
     private static final Color gameBallColor = Color.BLUE();
 
     // --------------------- \\
@@ -37,16 +38,12 @@ public class GameBall extends AbstractBall {
     @Override
     public void update() {
         double accelX = Gdx.input.getAccelerometerY();
-        double accelY = Gdx.input.getAccelerometerX();
+        double accelY = -Gdx.input.getAccelerometerX();
 
         Vecteur acceleration = new Vecteur(accelX, accelY);
 
-        acceleration.multiplie(0.1);
-
-        //this.velocity.ajoute(acceleration);
-        //this.velocity.x = 0; this.velocity.y = -10;
-        //this.position.ajoute(this.velocity);
         Cinematique.mouvementUniformémentAccéléré(this.getPosition(), this.velocity, new Vecteur(0,0), 1);
+        this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight, this.velocity));	//ajout des frottements
 
 
         for(Wall wall : this.game.getCurrentLevel().getWalls()) {
