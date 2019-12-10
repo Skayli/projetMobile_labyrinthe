@@ -18,7 +18,7 @@ public class GameBall extends AbstractBall {
 
     //Données relatives aux GameBall
     private static final int gameBallRadius = 250;
-    private static final double gameBallWeight = 500;
+    private static final double gameBallWeight = 50;
     private static final Color gameBallColor = Color.BLUE();
 
     // --------------------- \\
@@ -42,19 +42,13 @@ public class GameBall extends AbstractBall {
 
         Vecteur acceleration = new Vecteur(accelX, accelY);
 
-        this.position.ajoute(velocity);
-
-        this.velocity.ajoute(acceleration);
+        Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, acceleration, 1);
+        System.out.println(this.position);
         this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight, this.velocity));	//ajout des frottements
 
         for(Wall wall : this.game.getCurrentLevel().getWalls()) {
             MaCollision.collisionBilleSegmentAvecRebond(this.getPosition(), this.getRadius(), this.getVelocity(), wall.getBeginning(), wall.getEnding());
         }
-
-
-
-
-
 
     }
 

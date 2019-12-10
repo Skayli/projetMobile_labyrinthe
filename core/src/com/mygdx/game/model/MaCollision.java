@@ -35,7 +35,6 @@ public class MaCollision {
 
         Vector2 nearestPoint = new Vector2();
         Intersector.nearestSegmentPoint((float) P0.x, (float) P0.y, (float) P1.x, (float) P1.y, (float) position.x, (float) position.y, nearestPoint);
-
         Vecteur pointLePlusProche = new Vecteur(nearestPoint.x, nearestPoint.y);
 
         double distCarre = distCarre(position, pointLePlusProche);
@@ -44,21 +43,12 @@ public class MaCollision {
             return false;
         }
 
-        Vecteur dir = new Vecteur(position.x - pointLePlusProche.x, position.y - pointLePlusProche.y);
-        double angle = Vecteur.angleOrienté(dir, position);
-        Vecteur nextPos = move(position, angle, rayon - Math.sqrt(distCarre(position, pointLePlusProche)));
-
-        double distanceSignée = position.difference(P0).produitScalaire(N);
-
-        if (distanceSignée >= rayon)  return false; // il n'y a pas collision entre la bille (position,rayon) et le segment [P0P1]
-        System.out.println("COLLISION");
         double vN = vitesse.produitScalaire(N);
 
-//        if (vN >= 0) {
-//            System.out.println("La bille ressort");
-//            return false; // la bille est à l'extérieur et revient vers le cadre ou est à l'intérieur et s'éloigne du bord
-//        }
-
+        if (vN >= 0) {
+            System.out.println("La bille ressort");
+            return false; // la bille est à l'extérieur et revient vers le cadre ou est à l'intérieur et s'éloigne du bord
+        }
 
 // à présent distanceSignée < rayon et vN < 0
 
