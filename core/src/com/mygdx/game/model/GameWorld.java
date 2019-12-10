@@ -21,11 +21,12 @@ public class GameWorld extends Observable {
 
 
     public GameWorld() {
-        this.ball = new GameBall();
-        this.currentLevel = new Level2(this);
+        this.ball = new GameBall(this);
+        this.currentLevel = new Level1(this);
     }
 
     public void update() {
+        this.ball.update();
 
         this.setChanged();
         this.notifyObservers(this);

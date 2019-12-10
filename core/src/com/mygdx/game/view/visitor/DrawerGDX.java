@@ -53,13 +53,13 @@ public class DrawerGDX extends VisitorWorld {
 
         shape.setColor(ballColor);
         shape.begin(ShapeRenderer.ShapeType.Filled);
-        shape.circle((float) positionBille.x, (float) positionBille.y, game.getBall().getRadius());
+        shape.circle((float) positionBille.x, (float) positionBille.y, (float) game.getBall().getRadius());
         shape.end();
 
         //Dessin du contour de la bille
         shape.setColor(Color.BLACK);
         shape.begin(ShapeRenderer.ShapeType.Line);
-        shape.circle((float) positionBille.x, (float) positionBille.y, game.getBall().getRadius());
+        shape.circle((float) positionBille.x, (float) positionBille.y, (float) game.getBall().getRadius());
         shape.end();
 
         //Dessin des murs du level

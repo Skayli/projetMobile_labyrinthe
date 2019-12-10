@@ -12,13 +12,13 @@ import mesmaths.geometrie.base.Vecteur;
 public abstract class AbstractBall {
 
     protected double weight;
-    protected int radius;
+    protected double radius;
     protected Vecteur position;
     protected Vecteur velocity;
     protected Color color;
     protected GameWorld game;
 
-    public AbstractBall(GameWorld game, Vecteur position, int radius, double weight, Color color) {
+    public AbstractBall(GameWorld game, Vecteur position, double radius, double weight, Color color) {
         this.game = game;
         this.position = position;
         this.radius = radius;
@@ -45,11 +45,11 @@ public abstract class AbstractBall {
         this.weight = weight;
     }
 
-    public int getRadius() {
+    public double getRadius() {
         return radius;
     }
 
-    public void setRadius(int radius) {
+    public void setRadius(double radius) {
         this.radius = radius;
     }
 
