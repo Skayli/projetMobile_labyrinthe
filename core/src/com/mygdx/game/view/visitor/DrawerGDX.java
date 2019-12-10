@@ -68,14 +68,6 @@ public class DrawerGDX extends VisitorWorld {
             shape.begin(ShapeRenderer.ShapeType.Line);
             shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
             shape.end();
-            shape.setColor(Color.GREEN);
-            shape.begin(ShapeRenderer.ShapeType.Filled);
-            shape.circle((float) wall.getBeginning().x, (float) wall.getBeginning().y, 100);
-            shape.end();
-            shape.setColor(Color.RED);
-            shape.begin(ShapeRenderer.ShapeType.Filled);
-            shape.circle((float) wall.getEnding().x, (float) wall.getEnding().y, 150);
-            shape.end();
         }
 
         //Dessin des trous

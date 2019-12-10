@@ -1,5 +1,9 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Vector2;
+
+import mesmaths.geometrie.base.Matrice;
 import mesmaths.geometrie.base.Vecteur;
 
 public class MaCollision {
@@ -24,34 +28,36 @@ public class MaCollision {
      * @param P1 : la fin du segment
      *
      * */
-    public static boolean collisionBilleSegmentAvecRebond(final Vecteur position, double rayon, Vecteur vitesse, final Vecteur P0, final Vecteur P1)
+    public static boolean collisionBilleSegmentAvecRebond(Vecteur position, double rayon, Vecteur vitesse, final Vecteur P0, final Vecteur P1)
     {
         Vecteur[] base = base( P0,  P1);
-//Vecteur I = base[0];
         Vecteur N = base[1];
 
+        Vector2 nearestPoint = new Vector2();
+        Intersector.nearestSegmentPoint((float) P0.x, (float) P0.y, (float) P1.x, (float) P1.y, (float) position.x, (float) position.y, nearestPoint);
 
+        Vecteur pointLePlusProche = new Vecteur(nearestPoint.x, nearestPoint.y);
+
+        double distCarre = distCarre(position, pointLePlusProche);
+
+        if(distCarre > (rayon)*(rayon) ) {
+            return false;
+        }
+
+        Vecteur dir = new Vecteur(position.x - pointLePlusProche.x, position.y - pointLePlusProche.y);
+        double angle = Vecteur.angleOrienté(dir, position);
+        Vecteur nextPos = move(position, angle, rayon - Math.sqrt(distCarre(position, pointLePlusProche)));
 
         double distanceSignée = position.difference(P0).produitScalaire(N);
 
         if (distanceSignée >= rayon)  return false; // il n'y a pas collision entre la bille (position,rayon) et le segment [P0P1]
-
-        System.out.println("--------------------------------------------------");
-        System.out.println("Position : " + position);
-        System.out.println("Wall : " + P0 + " - " + P1);
-        System.out.println("Distance : " + distanceSignée);
-        System.out.println("Vecteur N : " + N);
-
+        System.out.println("COLLISION");
         double vN = vitesse.produitScalaire(N);
 
-        System.out.println("Vn : " +vN);
-
-        if (vN >= 0) {
-            System.out.println("La bille ressort");
-            return false; // la bille est à l'extérieur et revient vers le cadre ou est à l'intérieur et s'éloigne du bord
-        }
-
-        System.out.println("La bille ne ressort pas");
+//        if (vN >= 0) {
+//            System.out.println("La bille ressort");
+//            return false; // la bille est à l'extérieur et revient vers le cadre ou est à l'intérieur et s'éloigne du bord
+//        }
 
 
 // à présent distanceSignée < rayon et vN < 0
@@ -76,5 +82,20 @@ public class MaCollision {
     public static Vecteur[] base(Vecteur P0, Vecteur P1)
     {
         return P1.difference(P0).base();
+    }
+
+    public static double distCarre(Vecteur v1, Vecteur v2) {
+        return (v2.x - v1.x) * (v2.x - v1.x) + (v2.y - v1.y) * (v2.y - v1.y);
+    }
+
+    public static Vecteur move(Vecteur point, double angle, double distance) {
+        double x = point.x;
+        double y = point.y;
+        double rad = (angle) * (Math.PI / 180); // Convert to radians
+
+        x += distance * Math.sin(rad);
+        y += distance * Math.cos(rad);
+
+        return new Vecteur(x,y);
     }
 }
