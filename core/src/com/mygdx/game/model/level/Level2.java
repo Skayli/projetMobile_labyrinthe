@@ -17,24 +17,25 @@ public class Level2 extends AbstractLevel {
         super(gameWorld);
 
         //Positionnement de la bille
-        gameWorld.getBall().setPosition(1250,GameWorld.HEIGHT-1000);
+        gameWorld.getBall().setPosition(1250,6500);
 
+        double precision = 10;
         //Création des murs du level 2
         this.walls.add(Wall.createWall(500,2000, 500, 6500));
-        this.walls.addAll(Wall.createCurve(new Vecteur(500,2000), new Vecteur(2000,500), new Vecteur(500,500), 100));
-        this.walls.addAll(Wall.createCurve(new Vecteur(500,6500), new Vecteur(1250,7000), new Vecteur(500,7000), 100));
-        this.walls.addAll(Wall.createCurve(new Vecteur(1250,7000), new Vecteur(2000,6500), new Vecteur(2000,7000),100));
+        this.walls.addAll(Wall.createCurve(new Vecteur(500,2000), new Vecteur(2000,500), new Vecteur(500,500), precision));
+        this.walls.addAll(Wall.createCurve(new Vecteur(500,6500), new Vecteur(1250,7000), new Vecteur(500,7000), precision));
+        this.walls.addAll(Wall.createCurve(new Vecteur(1250,7000), new Vecteur(2000,6500), new Vecteur(2000,7000),precision));
         this.walls.add(Wall.createWall(2000, 6500, 2000,2500));
-        this.walls.addAll(Wall.createCurve(new Vecteur(2500,2000), new Vecteur(2000,2500), new Vecteur(2000,2000), 100));
+        this.walls.addAll(Wall.createCurve(new Vecteur(2500,2000), new Vecteur(2000,2500), new Vecteur(2000,2000), precision));
         this.walls.add(Wall.createWall(2500,2000, 9500, 2000));
         this.walls.add(Wall.createWall(2000,500, 10000,500));
-        this.walls.addAll(Wall.createCurve(new Vecteur(10000,500), new Vecteur(11500,2000), new Vecteur(11500,500), 100));
-        this.walls.addAll(Wall.createCurve(new Vecteur(11500,2000), new Vecteur(10000,3500), new Vecteur(11500,3500), 100));
+        this.walls.addAll(Wall.createCurve(new Vecteur(10000,500), new Vecteur(11500,2000), new Vecteur(11500,500), precision));
+        this.walls.addAll(Wall.createCurve(new Vecteur(11500,2000), new Vecteur(10000,3500), new Vecteur(11500,3500), precision));
         this.walls.add(Wall.createWall(10000,3500,3500,3500));
         this.walls.add(Wall.createWall(2000,5000,9500,5000));
-        this.walls.addAll(Wall.createCurve(new Vecteur(2500,5000), new Vecteur(2000,4500), new Vecteur(2000,5000),100));
-        this.walls.addAll(Wall.createCurve(new Vecteur(10000,3500), new Vecteur(11500,5000), new Vecteur(11500,3500),100));
-        this.walls.addAll(Wall.createCurve(new Vecteur(11500,5000), new Vecteur(10000,6500), new Vecteur(11500,6500), 100));
+        this.walls.addAll(Wall.createCurve(new Vecteur(2500,5000), new Vecteur(2000,4500), new Vecteur(2000,5000),precision));
+        this.walls.addAll(Wall.createCurve(new Vecteur(10000,3500), new Vecteur(11500,5000), new Vecteur(11500,3500),precision));
+        this.walls.addAll(Wall.createCurve(new Vecteur(11500,5000), new Vecteur(10000,6500), new Vecteur(11500,6500), precision));
         this.walls.add(Wall.createWall(10000,6500,2000, 6500));
 
         //Création des trous

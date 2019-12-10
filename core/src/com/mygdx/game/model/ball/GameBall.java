@@ -2,6 +2,7 @@ package com.mygdx.game.model.ball;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.MaCollision;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.color.Color;
 
@@ -24,6 +25,8 @@ public class GameBall extends AbstractBall {
     // --------------------- \\
     public GameBall(GameWorld game) {
         super(game, new Vecteur(0,0), gameBallRadius, gameBallWeight, gameBallColor);
+        this.velocity.x = 0;
+        this.velocity.y = 20;
     }
 
     public GameBall(GameWorld game, Vecteur position) {
@@ -34,20 +37,20 @@ public class GameBall extends AbstractBall {
     @Override
     public void update() {
         double accelX = Gdx.input.getAccelerometerY();
-        double accelY = -Gdx.input.getAccelerometerX();
+        double accelY = Gdx.input.getAccelerometerX();
 
         Vecteur acceleration = new Vecteur(accelX, accelY);
 
         acceleration.multiplie(0.1);
 
-        this.velocity.ajoute(acceleration);
-        this.position.ajoute(this.velocity);
+        //this.velocity.ajoute(acceleration);
+        //this.velocity.x = 0; this.velocity.y = -10;
+        //this.position.ajoute(this.velocity);
+        Cinematique.mouvementUniformémentAccéléré(this.getPosition(), this.velocity, new Vecteur(0,0), 1);
 
 
         for(Wall wall : this.game.getCurrentLevel().getWalls()) {
-            if(Collisions.collisionBilleSegmentAvecRebond(this.getPosition(), 1, this.getVelocity(), wall.getBeginning(), wall.getEnding())) {
-                System.out.println("Bille Position : " + this.position + " - Wall : " + wall.getBeginning() + " ," + wall.getEnding());
-            };
+            MaCollision.collisionBilleSegmentAvecRebond(this.getPosition(), this.getRadius(), this.getVelocity(), wall.getBeginning(), wall.getEnding());
         }
     }
 
