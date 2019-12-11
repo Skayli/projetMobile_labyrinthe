@@ -23,7 +23,7 @@ public class GameWorld extends Observable {
 
     public GameWorld() {
         this.ball = new GameBall(this);
-        this.currentLevel = new Level1(this);
+        this.currentLevel = new Level2(this);
     }
 
     public void update() {
