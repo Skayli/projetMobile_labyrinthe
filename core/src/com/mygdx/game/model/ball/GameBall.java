@@ -2,12 +2,14 @@ package com.mygdx.game.model.ball;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.MaCollision;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.color.Color;
 
 import mesmaths.cinematique.Cinematique;
 import mesmaths.cinematique.Collisions;
 import mesmaths.geometrie.base.Vecteur;
+import mesmaths.mecanique.MecaniquePoint;
 
 /**
  * Classe représentant une bille de jeu (celle contrôlée par le joueur)
@@ -16,7 +18,7 @@ public class GameBall extends AbstractBall {
 
     //Données relatives aux GameBall
     private static final int gameBallRadius = 250;
-    private static final double gameBallWeight = 5;
+    private static final double gameBallWeight = 100;
     private static final Color gameBallColor = Color.BLUE();
 
     // --------------------- \\
@@ -38,17 +40,13 @@ public class GameBall extends AbstractBall {
 
         Vecteur acceleration = new Vecteur(accelX, accelY);
 
-        acceleration.multiplie(0.1);
-
-        this.velocity.ajoute(acceleration);
-        this.position.ajoute(this.velocity);
-
+        Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, acceleration, 1);
+        this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight, this.velocity));	//ajout des frottements
 
         for(Wall wall : this.game.getCurrentLevel().getWalls()) {
-            if(Collisions.collisionBilleSegmentAvecRebond(this.getPosition(), 1, this.getVelocity(), wall.getBeginning(), wall.getEnding())) {
-                System.out.println("Bille Position : " + this.position + " - Wall : " + wall.getBeginning() + " ," + wall.getEnding());
-            };
+            MaCollision.collisionBilleSegment(this, wall);
         }
+
     }
 
     // -------------------------------- \\

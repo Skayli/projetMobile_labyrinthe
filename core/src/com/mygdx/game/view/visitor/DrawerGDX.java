@@ -63,8 +63,8 @@ public class DrawerGDX extends VisitorWorld {
         shape.end();
 
         //Dessin des murs du level
-        shape.setColor(Color.BLACK);
         for(Wall wall : game.getCurrentLevel().getWalls()) {
+            shape.setColor(Color.BLACK);
             shape.begin(ShapeRenderer.ShapeType.Line);
             shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
             shape.end();

@@ -2,7 +2,6 @@ package com.mygdx.game.model;
 
 import com.mygdx.game.model.ball.GameBall;
 import com.mygdx.game.model.level.AbstractLevel;
-import com.mygdx.game.model.level.Level1;
 import com.mygdx.game.model.level.Level2;
 
 import java.util.Observable;
@@ -22,7 +21,7 @@ public class GameWorld extends Observable {
 
     public GameWorld() {
         this.ball = new GameBall(this);
-        this.currentLevel = new Level1(this);
+        this.currentLevel = new Level2(this);
     }
 
     public void update() {
