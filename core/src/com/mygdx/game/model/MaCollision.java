@@ -18,15 +18,9 @@ public class MaCollision {
             Vecteur normale = getNormale(ball, wall);
             Vecteur rebond = calculerVecteurV2(ball.getVelocity(), normale);
 
-            System.out.println("normale : " + normale);
-
-            System.out.println("Ball : " + ball.getPosition());
-            System.out.println("Wall : " + wall.getBeginning() + " - " + wall.getEnding());
-
 
             ball.setVelocity(rebond);
-            System.out.println("COLLISION");
-            System.out.println("Rebond : " + rebond);
+
 
             //rayon.ci * vecteur divisé par norme
             Vecteur dir = new Vecteur(ball.getPosition().x - projection.x, ball.getPosition().y - projection.y);
@@ -36,15 +30,11 @@ public class MaCollision {
 
             dir.multiplie(ball.getRadius() - Math.sqrt(distCarre(ball.getPosition(), projection)));
 
-            System.out.println("Ancienne position BILLE : " + ball.getPosition());
             //Nouveau centre = ancien centre + dir*rayon-CI
             ball.setPosition(ball.getPosition().somme(dir));
-            System.out.println("Nouvelle position BILLE : " + ball.getPosition());
 
             return true;
         }
-
-        System.out.println("PAS DE COLLISION");
 
         return false;
     }
@@ -62,18 +52,15 @@ public class MaCollision {
         double pscal1 = AB.x*AC.x + AB.y*AC.y;  // produit scalaire
         double pscal2 = (-AB.x)*BC.x + (-AB.y)*BC.y;  // produit scalaire
         if (pscal1>=0 && pscal2>=0) {
-            System.out.println("COLLISION PASCALLLLLLLLLLLLLLLLLLLLLLLLL");
             return true;   // I entre A et B, ok.
         }
 
 
         if(collisionPointCercle(wall.getBeginning(), ball)) {
-            System.out.println("COLLISION AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             return true;
         }
 
         if(collisionPointCercle(wall.getEnding(), ball)) {
-            System.out.println("COLLISION BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
             return true;
         }
 
