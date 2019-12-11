@@ -18,7 +18,7 @@ public class GameBall extends AbstractBall {
 
     //Données relatives aux GameBall
     private static final int gameBallRadius = 250;
-    private static final double gameBallWeight = 100;
+    private static final double gameBallWeight = 75;
     private static final Color gameBallColor = Color.BLUE();
 
     // --------------------- \\
