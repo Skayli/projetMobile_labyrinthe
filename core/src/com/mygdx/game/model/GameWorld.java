@@ -2,9 +2,7 @@ package com.mygdx.game.model;
 
 import com.mygdx.game.model.ball.GameBall;
 import com.mygdx.game.model.level.AbstractLevel;
-import com.mygdx.game.model.level.Level1;
 import com.mygdx.game.model.level.Level2;
-import com.mygdx.game.model.level.Level4;
 
 import java.util.Observable;
 
