@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
+import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.view.VisitorWorld;
 
@@ -46,8 +47,27 @@ public class DrawerGDX extends VisitorWorld {
 
         Gdx.gl20.glLineWidth(5);
 
+
+
+        //Dessin des trous
+        for(Hole hole : game.getCurrentLevel().getHoles()) {
+            shape.begin(ShapeRenderer.ShapeType.Filled);
+            shape.circle((float) hole.getPosition().x, (float) hole.getPosition().y, hole.getRadius());
+            shape.end();
+        }
+
+        //Dessin de la cible
+        com.mygdx.game.model.color.Color colorTarget = game.getCurrentLevel().getTarget().getColor();
+        Color colorTargetGDX = new Color(colorTarget.getRed(), colorTarget.getGreen(), colorTarget.getBlue(), 1);
+        Target target = game.getCurrentLevel().getTarget();
+        shape.setColor(colorTargetGDX);
+        shape.begin(ShapeRenderer.ShapeType.Filled);
+        shape.rect((float) target.getBottomLeft().x, (float) target.getBottomLeft().y, (float) target.getWidth(), (float) target.getHeight());
+        shape.end();
+
         //Dessin de la bille contrôlée par le joueur
         com.mygdx.game.model.color.Color billeColor = game.getBall().getColor();
+
         Color ballColor = new Color(billeColor.getRed(), billeColor.getGreen(), billeColor.getBlue(), 1);
         Vecteur positionBille = game.getBall().getPosition();
 
@@ -62,6 +82,8 @@ public class DrawerGDX extends VisitorWorld {
         shape.circle((float) positionBille.x, (float) positionBille.y, (float) game.getBall().getRadius());
         shape.end();
 
+
+
         //Dessin des murs du level
         for(Wall wall : game.getCurrentLevel().getWalls()) {
             shape.setColor(Color.BLACK);
@@ -70,12 +92,8 @@ public class DrawerGDX extends VisitorWorld {
             shape.end();
         }
 
-        //Dessin des trous
-        for(Hole hole : game.getCurrentLevel().getHoles()) {
-            shape.begin(ShapeRenderer.ShapeType.Filled);
-            shape.circle((float) hole.getPosition().x, (float) hole.getPosition().y, hole.getRadius());
-            shape.end();
-        }
+
+
 
         batch.end();
     }

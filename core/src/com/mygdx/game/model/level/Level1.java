@@ -1,6 +1,7 @@
 package com.mygdx.game.model.level;
 
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
 
 import mesmaths.geometrie.base.Vecteur;
@@ -28,12 +29,7 @@ public class Level1 extends AbstractLevel{
         this.walls.add(Wall.createWall(11500,3500,11500,6500));
         this.walls.add(Wall.createWall(11500,6500,2000, 6500));
 
-
-//        Vecteur curveBeginning = new Vecteur(3000,3250);
-//        Vecteur curveEnding = new Vecteur(9000, 3250);
-//        Vecteur curveControlPoint = new Vecteur(6000, 0);
-//        this.walls.addAll(Wall.createCurve(curveBeginning, curveEnding, curveControlPoint, 100));
-
+        this.target = new Target(2000,5000,1500,1500);
     }
 
 

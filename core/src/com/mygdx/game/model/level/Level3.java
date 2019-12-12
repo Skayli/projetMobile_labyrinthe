@@ -2,6 +2,7 @@ package com.mygdx.game.model.level;
 
 import com.mygdx.game.model.Cannon;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.Target;
 
 /**
  * Classe représentant le level 3
@@ -20,6 +21,9 @@ public class Level3 extends AbstractLevel {
         this.cannon = new Cannon();
 
         //Construction des murs du level 3
+
+
+        this.target = new Target(2000,5000,1500,1500);
 
     }
 
