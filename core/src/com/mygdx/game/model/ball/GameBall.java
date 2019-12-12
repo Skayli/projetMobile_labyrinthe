@@ -78,6 +78,11 @@ public class GameBall extends AbstractBall {
         }
     }
 
+    public void resetVelocity() {
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+    }
+
     // -------------------------------- \\
     // --- Fin de la class GameBall --- \\
     // -------------------------------- \\

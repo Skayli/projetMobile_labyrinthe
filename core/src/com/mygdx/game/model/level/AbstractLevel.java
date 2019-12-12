@@ -26,6 +26,8 @@ public abstract class AbstractLevel implements iLevelState {
         this.gameWorld = gameWorld;
         this.walls = new ArrayList<>();
         this.holes = new ArrayList<>();
+
+        this.gameWorld.getBall().resetVelocity();
     }
 
     // fonction d'update, surtout utile pour le level 3 et mettre à jour le canon
