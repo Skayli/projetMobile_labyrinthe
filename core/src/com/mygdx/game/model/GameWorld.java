@@ -24,7 +24,7 @@ public class GameWorld extends Observable {
 
     public GameWorld() {
         this.ball = new GameBall(this);
-        this.currentLevel = new Level3(this);
+        this.currentLevel = new Level2(this);
         SoundManager.getInstance().play(SoundManager.bg);
     }
 
