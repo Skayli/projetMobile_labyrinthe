@@ -3,6 +3,8 @@ package com.mygdx.game.model.level;
 import com.mygdx.game.model.Cannon;
 import com.mygdx.game.model.GameWorld;
 
+import mesmaths.geometrie.base.Vecteur;
+
 /**
  * Classe représentant le level 3
  */
@@ -14,7 +16,8 @@ public class Level3 extends AbstractLevel {
         super(gameWorld);
 
         //Positionnement de la bille
-        gameWorld.getBall().setPosition(1250,GameWorld.HEIGHT-1000);
+        this.initialBallPosition = new Vecteur(1250, GameWorld.HEIGHT-1000);
+        gameWorld.getBall().setPosition(this.initialBallPosition);
 
         //Création du canon
         this.cannon = new Cannon();

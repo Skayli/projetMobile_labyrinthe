@@ -5,6 +5,8 @@ import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Wall;
 import java.util.ArrayList;
 
+import mesmaths.geometrie.base.Vecteur;
+
 /**
  * Classe abstraite représentant un level
  */
@@ -13,6 +15,7 @@ public abstract class AbstractLevel implements iLevelState {
     protected GameWorld gameWorld; // sert à initialiser la position de la bille à chaque niveau
     protected ArrayList<Wall> walls; // liste des murs
     protected ArrayList<Hole> holes; // liste des trous
+    protected Vecteur initialBallPosition;
 
 
     public AbstractLevel(GameWorld gameWorld) {
@@ -23,6 +26,11 @@ public abstract class AbstractLevel implements iLevelState {
 
     // fonction d'update, surtout utile pour le level 3 et mettre à jour le canon
     public void update() { }
+
+    public void resetBallPosition()
+    {
+        this.gameWorld.getBall().setPosition(initialBallPosition);
+    }
 
     // --------------- \\
     // --- Getters --- \\

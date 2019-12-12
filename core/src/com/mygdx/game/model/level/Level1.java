@@ -14,7 +14,8 @@ public class Level1 extends AbstractLevel{
         super(gameWorld);
 
         //Positionnement de la bille
-        gameWorld.getBall().setPosition(1250,6500);
+        this.initialBallPosition = new  Vecteur(1250, 6500);
+        gameWorld.getBall().setPosition(this.initialBallPosition);
 
         //Création des murs du level 1
         this.walls.add(Wall.createWall(500,500, 500, 7000));

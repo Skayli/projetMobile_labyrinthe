@@ -58,7 +58,7 @@ public abstract class AbstractBall {
     }
 
     public void setPosition(Vecteur position) {
-        this.position = position;
+        this.position = new Vecteur(position);
     }
 
     public void setPosition(double x, double y) {

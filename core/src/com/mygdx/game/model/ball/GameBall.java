@@ -2,6 +2,7 @@ package com.mygdx.game.model.ball;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.MaCollision;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.color.Color;
@@ -46,7 +47,13 @@ public class GameBall extends AbstractBall {
         for(Wall wall : this.game.getCurrentLevel().getWalls()) {
             MaCollision.collisionBilleSegment(this, wall);
         }
-
+        for(Hole hole: this.game.getCurrentLevel().getHoles())
+        {
+            if (MaCollision.collisionHole(this, hole))
+            {
+                this.game.getCurrentLevel().resetBallPosition();
+            }
+        }
     }
 
     // -------------------------------- \\

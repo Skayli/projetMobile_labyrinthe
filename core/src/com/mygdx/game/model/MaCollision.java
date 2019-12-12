@@ -67,6 +67,22 @@ public class MaCollision {
         return false;
     }
 
+    public static boolean collisionHole(AbstractBall ball, Hole hole)
+    {
+        double dist = Math.sqrt(MaCollision.distCarre(hole.getPosition(), ball.getPosition()));
+        if (dist < (hole.getRadius()))
+        {
+            System.out.println("Ball lies completly inside inside hole without touching each other");
+        }
+        else
+        {
+//            System.out.println("pas dedans");
+            return false;
+        }
+        return true;
+
+    }
+
     public static Vecteur projectionI(AbstractBall ball, Wall wall) {
         Vecteur u, AC;
         u = new Vecteur(wall.getEnding().x - wall.getBeginning().x, wall.getEnding().y - wall.getBeginning().y);
