@@ -21,7 +21,7 @@ public class GameBallStateDead extends GameBallState {
 
     @Override
     public void update() {
-        this.gameBall.setRadius(this.gameBall.radius-1);
+        this.gameBall.setRadius(this.gameBall.radius-2.5);
 
         Cinematique.mouvementUniformémentAccéléré(this.gameBall.position, this.gameBall.velocity, new Vecteur(0,0), 1);
         this.gameBall.velocity.ajoute(MecaniquePoint.freinageFrottement(this.gameBall.weight/5, this.gameBall.velocity));	//ajout des frottements + up du poids car dans trou

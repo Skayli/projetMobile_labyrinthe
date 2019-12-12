@@ -13,8 +13,8 @@ public class ListenerVictoryCompletion implements Music.OnCompletionListener {
 
     @Override
     public void onCompletion(Music music) {
-        game.getBall().setCurrentGameBallState(game.getBall().getGameBallStateAlive());
         game.goToNextLevel();
+        game.getBall().setCurrentGameBallState(game.getBall().getGameBallStateAlive());
         SoundManager.getInstance().play(SoundManager.bg);
     }
 }
