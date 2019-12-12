@@ -32,6 +32,8 @@ public abstract class AbstractLevel implements iLevelState {
     public void resetBallPosition()
     {
         this.gameWorld.getBall().setPosition(initialBallPosition);
+        this.gameWorld.getBall().getVelocity().x = 0;
+        this.gameWorld.getBall().getVelocity().y = 0;
     }
 
     // --------------- \\
