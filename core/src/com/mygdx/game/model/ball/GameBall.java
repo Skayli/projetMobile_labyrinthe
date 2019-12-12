@@ -22,60 +22,57 @@ public class GameBall extends AbstractBall {
     public static final int gameBallRadius = 250;
     private static final double gameBallWeight = 75;
     private static final Color gameBallColor = Color.BLUE();
-    private boolean isDead = false;
+
+    //Variables relatives au GameBallState
+    private GameBallState gameBallStateAlive, gameBallStateDead, gameBallStateStatic, currentGameBallState;
 
     // --------------------- \\
     // --- Constructeurs --- \\
     // --------------------- \\
     public GameBall(GameWorld game) {
         super(game, new Vecteur(0,0), gameBallRadius, gameBallWeight, gameBallColor);
+        installationStates();
     }
 
     public GameBall(GameWorld game, Vecteur position) {
         super(game, position, gameBallRadius, gameBallWeight, gameBallColor);
+        installationStates();
+    }
+
+    // Méthode pour mettre en place la structure des GameBallStates pour la GameBall
+    private void installationStates()
+    {
+        this.gameBallStateAlive = new GameBallStateAlive(this);
+        this.gameBallStateDead = new GameBallStateDead(this);
+        this.gameBallStateStatic = new GameBallStateStatic(this);
+        // Définir l'état courant
+        this.currentGameBallState = this.gameBallStateAlive;
     }
 
     // Gestion du déplacement d'une GameBall
     @Override
     public void update() {
-        if (!isDead)
-        {
-            double accelX = Gdx.input.getAccelerometerY();
-            double accelY = -Gdx.input.getAccelerometerX();
+        this.currentGameBallState.update();
+    }
 
-            Vecteur acceleration = new Vecteur(accelX, accelY);
+    public GameBallState getCurrentGameBallState() {
+        return currentGameBallState;
+    }
 
-            Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, acceleration, 1);
-            this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight, this.velocity));	//ajout des frottements
+    public void setCurrentGameBallState(GameBallState currentGameBallState) {
+        this.currentGameBallState = currentGameBallState;
+    }
 
-            for(Wall wall : this.game.getCurrentLevel().getWalls()) {
-                MaCollision.collisionBilleSegment(this, wall);
-            }
-            for(Hole hole: this.game.getCurrentLevel().getHoles())
-            {
-                if (MaCollision.collisionHole(this, hole))
-                {
-                    isDead = true;
-                }
-            }
-        }
-        else
-        {
-            this.setRadius(radius-1);
+    public GameBallState getGameBallStateAlive() {
+        return gameBallStateAlive;
+    }
 
-            Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, new Vecteur(0,0), 1);
-            this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight/5, this.velocity));	//ajout des frottements + up du poids car dans trou
+    public GameBallState getGameBallStateDead() {
+        return gameBallStateDead;
+    }
 
-            for(Wall wall : this.game.getCurrentLevel().getWalls()) {
-                MaCollision.collisionBilleSegment(this, wall);
-            }
-            if (radius <= 0)
-            {
-                this.game.getCurrentLevel().resetBallPosition();
-                isDead = false;
-                this.setColor(Color.BLUE());
-            }
-        }
+    public GameBallState getGameBallStateStatic() {
+        return gameBallStateStatic;
     }
 
     public void resetVelocity() {
