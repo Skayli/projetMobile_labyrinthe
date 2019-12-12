@@ -7,8 +7,9 @@ import com.badlogic.gdx.audio.Sound;
 public class SoundManager {
 
     private static SoundManager instance;
-    private static Music bg;
-    private static Sound hit;
+    public static Music bg;
+    public static Music victory;
+    public static Sound hit;
 
     private SoundManager() {
 
@@ -17,8 +18,11 @@ public class SoundManager {
     public static SoundManager getInstance() {
         if(instance == null) {
             instance = new SoundManager();
+
             bg = Gdx.audio.newMusic(Gdx.files.internal("bg.mp3"));
             bg.setLooping(true);
+
+            victory = Gdx.audio.newMusic(Gdx.files.internal("victory.mp3"));
 
             hit  = Gdx.audio.newSound(Gdx.files.internal("bille_bille.wav"));
         }
@@ -26,12 +30,18 @@ public class SoundManager {
         return instance;
     }
 
-    public void playBackground() {
-        bg.play();
+    public void play(Music music) {
+        music.play();
     }
 
-    public void playCollision(float intensite) {
-        hit.play(intensite);
+    public void play(Sound sound, float volume) {
+        sound.play(volume);
     }
+
+    public void stop(Music music) {
+        music.stop();
+    }
+
+
 
 }

@@ -107,7 +107,7 @@ public class MaCollision {
         Vecteur v2;
         double pscal = (v.x*N.x + v.y*N.y);
 
-        SoundManager.getInstance().playCollision((float) Math.abs(pscal)/100);
+        SoundManager.getInstance().play(SoundManager.hit, (float) Math.abs(pscal)/100);
 
         v2 = new Vecteur(v.x-2*pscal*N.x, v.y-2*pscal*N.y);
 
