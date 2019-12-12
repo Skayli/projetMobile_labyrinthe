@@ -71,7 +71,7 @@ public class MaCollision {
     public static boolean collisionHole(AbstractBall ball, Hole hole)
     {
         double dist = Math.sqrt(MaCollision.distCarre(hole.getPosition(), ball.getPosition()));
-        if (dist < (hole.getRadius()))
+        if ( (dist + (ball.getRadius()*0.30)) < (hole.getRadius()))
         {
             return true;
         }

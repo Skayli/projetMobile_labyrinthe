@@ -61,11 +61,9 @@ public class GameBall extends AbstractBall {
         else
         {
             this.setRadius(radius-1);
-            this.getColor().setBlue((int)(255*this.radius/GameBall.gameBallRadius));
-            this.getColor().setRed((255-this.getColor().getBlue()));
 
             Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, new Vecteur(0,0), 1);
-            this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight/5, this.velocity));	//ajout des frottements
+            this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight/5, this.velocity));	//ajout des frottements + up du poids car dans trou
 
             for(Wall wall : this.game.getCurrentLevel().getWalls()) {
                 MaCollision.collisionBilleSegment(this, wall);
