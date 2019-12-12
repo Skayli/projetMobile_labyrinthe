@@ -2,6 +2,7 @@ package com.mygdx.game.model.level;
 
 import com.mygdx.game.model.Cannon;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.Target;
 
 import mesmaths.geometrie.base.Vecteur;
 
@@ -24,6 +25,8 @@ public class Level3 extends AbstractLevel {
 
         //Construction des murs du level 3
 
+
+        this.target = new Target(2000,5000,1500,1500);
     }
 
     public void update() {
