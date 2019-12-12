@@ -1,9 +1,11 @@
 package com.mygdx.game.model;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.model.ball.AbstractBall;
 import com.mygdx.game.model.ball.GameBall;
+import com.mygdx.game.model.sound.SoundManager;
 
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
@@ -109,6 +111,9 @@ public class MaCollision {
     public static Vecteur calculerVecteurV2(Vecteur v, Vecteur N) {
         Vecteur v2;
         double pscal = (v.x*N.x + v.y*N.y);
+
+        SoundManager.getInstance().playCollision((float) Math.abs(pscal)/100);
+
         v2 = new Vecteur(v.x-2*pscal*N.x, v.y-2*pscal*N.y);
 
         return v2;
@@ -148,17 +153,6 @@ public class MaCollision {
 
     public static double distCarre(Vecteur v1, Vecteur v2) {
         return (v2.x - v1.x) * (v2.x - v1.x) + (v2.y - v1.y) * (v2.y - v1.y);
-    }
-
-    public static Vecteur move(Vecteur point, double angle, double distance) {
-        double x = point.x;
-        double y = point.y;
-        double rad = (angle) * (Math.PI / 180); // Convert to radians
-
-        x += distance * Math.sin(rad);
-        y += distance * Math.cos(rad);
-
-        return new Vecteur(x,y);
     }
 
     /**
