@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.mygdx.game.controller.Controller;
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.sound.SoundManager;
 import com.mygdx.game.view.GameView;
 import com.mygdx.game.view.visitor.DrawerGDX;
 

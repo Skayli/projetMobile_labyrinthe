@@ -6,6 +6,7 @@ import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.MaCollision;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.color.Color;
+import com.mygdx.game.model.sound.SoundManager;
 
 import mesmaths.cinematique.Cinematique;
 import mesmaths.cinematique.Collisions;
@@ -72,6 +73,11 @@ public class GameBall extends AbstractBall {
 
     public GameBallState getGameBallStateStatic() {
         return gameBallStateStatic;
+    }
+
+    public void resetVelocity() {
+        this.velocity.x = 0;
+        this.velocity.y = 0;
     }
 
     // -------------------------------- \\
