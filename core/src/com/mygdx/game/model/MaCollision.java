@@ -73,14 +73,9 @@ public class MaCollision {
         double dist = Math.sqrt(MaCollision.distCarre(hole.getPosition(), ball.getPosition()));
         if (dist < (hole.getRadius()))
         {
-            System.out.println("Ball lies completly inside inside hole without touching each other");
+            return true;
         }
-        else
-        {
-//            System.out.println("pas dedans");
-            return false;
-        }
-        return true;
+        return false;
 
     }
 
