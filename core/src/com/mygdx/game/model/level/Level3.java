@@ -24,7 +24,6 @@ public class Level3 extends AbstractLevel {
 
 
         this.target = new Target(2000,5000,1500,1500);
-
     }
 
     public void update() {

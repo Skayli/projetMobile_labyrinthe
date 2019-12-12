@@ -22,6 +22,7 @@ public class MaCollision {
             ball.setVelocity(rebond);
 
 
+            //On remonte la bille pour éviter qu'elle soit coincée dans le mur
             //rayon.ci * vecteur divisé par norme
             Vecteur dir = new Vecteur(ball.getPosition().x - projection.x, ball.getPosition().y - projection.y);
             double normeDir = dir.norme();
@@ -142,5 +143,36 @@ public class MaCollision {
         y += distance * Math.cos(rad);
 
         return new Vecteur(x,y);
+    }
+
+    /**
+     * Vérifie si un point se trouve à l'intérieur d'un rectangle
+     * @param point
+     * @param rectBottomLeftPoint
+     * @param rectWidth
+     * @param rectHeight
+     * @return
+     */
+    public static boolean isPointInRectangle(Vecteur point, Vecteur rectBottomLeftPoint, double rectWidth, double rectHeight) {
+        boolean inX = point.x > rectBottomLeftPoint.x && point.x < rectBottomLeftPoint.x + rectWidth;
+        boolean inY = point.y > rectBottomLeftPoint.y && point.y < rectBottomLeftPoint.y + rectHeight;
+
+        return inX && inY;
+    }
+
+    /**
+     * Vérifie si un cercle est entièrement à l'intérieur d'un rectangle
+     * @param circleCenter
+     * @param circleRadius
+     * @param rectBottomLeftPoint
+     * @param rectWidth
+     * @param rectHeight
+     * @return
+     */
+    public static boolean isCircleInRectangle(Vecteur circleCenter, double circleRadius, Vecteur rectBottomLeftPoint, double rectWidth, double rectHeight) {
+        boolean inX = circleCenter.x - circleRadius > rectBottomLeftPoint.x && circleCenter.x + circleRadius < rectBottomLeftPoint.x + rectWidth;
+        boolean inY = circleCenter.y - circleRadius > rectBottomLeftPoint.y && circleCenter.y + circleRadius < rectBottomLeftPoint.y + rectHeight;
+
+        return inX && inY;
     }
 }
