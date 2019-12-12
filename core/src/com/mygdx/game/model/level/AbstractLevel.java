@@ -4,6 +4,8 @@ import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
+import com.mygdx.game.model.ball.GameBall;
+
 import java.util.ArrayList;
 
 import mesmaths.geometrie.base.Vecteur;
@@ -34,6 +36,7 @@ public abstract class AbstractLevel implements iLevelState {
         this.gameWorld.getBall().setPosition(initialBallPosition);
         this.gameWorld.getBall().getVelocity().x = 0;
         this.gameWorld.getBall().getVelocity().y = 0;
+        this.gameWorld.getBall().setRadius(GameBall.gameBallRadius);
     }
 
     // --------------- \\

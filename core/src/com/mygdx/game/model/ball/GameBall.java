@@ -19,9 +19,10 @@ import mesmaths.mecanique.MecaniquePoint;
 public class GameBall extends AbstractBall {
 
     //Données relatives aux GameBall
-    private static final int gameBallRadius = 250;
+    public static final int gameBallRadius = 250;
     private static final double gameBallWeight = 75;
     private static final Color gameBallColor = Color.BLUE();
+    private boolean isDead = false;
 
     // --------------------- \\
     // --- Constructeurs --- \\
@@ -37,22 +38,42 @@ public class GameBall extends AbstractBall {
     // Gestion du déplacement d'une GameBall
     @Override
     public void update() {
-        double accelX = Gdx.input.getAccelerometerY();
-        double accelY = -Gdx.input.getAccelerometerX();
-
-        Vecteur acceleration = new Vecteur(accelX, accelY);
-
-        Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, acceleration, 1);
-        this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight, this.velocity));	//ajout des frottements
-
-        for(Wall wall : this.game.getCurrentLevel().getWalls()) {
-            MaCollision.collisionBilleSegment(this, wall);
-        }
-        for(Hole hole: this.game.getCurrentLevel().getHoles())
+        if (!isDead)
         {
-            if (MaCollision.collisionHole(this, hole))
+            double accelX = Gdx.input.getAccelerometerY();
+            double accelY = -Gdx.input.getAccelerometerX();
+
+            Vecteur acceleration = new Vecteur(accelX, accelY);
+
+            Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, acceleration, 1);
+            this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight, this.velocity));	//ajout des frottements
+
+            for(Wall wall : this.game.getCurrentLevel().getWalls()) {
+                MaCollision.collisionBilleSegment(this, wall);
+            }
+            for(Hole hole: this.game.getCurrentLevel().getHoles())
+            {
+                if (MaCollision.collisionHole(this, hole))
+                {
+                    isDead = true;
+                }
+            }
+        }
+        else
+        {
+            this.setRadius(radius-1);
+
+            Cinematique.mouvementUniformémentAccéléré(this.position, this.velocity, new Vecteur(0,0), 1);
+            this.velocity.ajoute(MecaniquePoint.freinageFrottement(this.weight/5, this.velocity));	//ajout des frottements + up du poids car dans trou
+
+            for(Wall wall : this.game.getCurrentLevel().getWalls()) {
+                MaCollision.collisionBilleSegment(this, wall);
+            }
+            if (radius <= 0)
             {
                 this.game.getCurrentLevel().resetBallPosition();
+                isDead = false;
+                this.setColor(Color.BLUE());
             }
         }
     }
