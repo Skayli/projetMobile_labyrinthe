@@ -32,7 +32,8 @@ public class GameWorld extends Observable {
         //Déplacement de la bille et gestion des collision et des trous
         this.ball.update();
 
-        if(isLevelFinished()) {
+        if(isLevelFinished() && ball.getCurrentGameBallState() == ball.getGameBallStateAlive()) {
+            System.out.println("enddddddddddddddddddddddddddddddddddd");
             ball.setCurrentGameBallState(ball.getGameBallStateStatic());
             SoundManager.getInstance().stop(SoundManager.bg);
             SoundManager.getInstance().play(SoundManager.victory);

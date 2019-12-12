@@ -1,17 +1,12 @@
 package com.mygdx.game.model.ball;
 
-import com.badlogic.gdx.Gdx;
 import com.mygdx.game.model.GameWorld;
-import com.mygdx.game.model.Hole;
-import com.mygdx.game.model.MaCollision;
-import com.mygdx.game.model.Wall;
+import com.mygdx.game.model.ball.GameBallStates.GameBallStateAlive;
+import com.mygdx.game.model.ball.GameBallStates.GameBallStateDead;
+import com.mygdx.game.model.ball.GameBallStates.GameBallStateStatic;
 import com.mygdx.game.model.color.Color;
-import com.mygdx.game.model.sound.SoundManager;
 
-import mesmaths.cinematique.Cinematique;
-import mesmaths.cinematique.Collisions;
 import mesmaths.geometrie.base.Vecteur;
-import mesmaths.mecanique.MecaniquePoint;
 
 /**
  * Classe représentant une bille de jeu (celle contrôlée par le joueur)

@@ -37,6 +37,11 @@ public abstract class AbstractBall {
     // --- Getters & setters --- \\
     // ------------------------- \\
 
+
+    public GameWorld getGame() {
+        return game;
+    }
+
     public double getWeight() {
         return weight;
     }
