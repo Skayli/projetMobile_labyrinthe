@@ -33,6 +33,7 @@ public class GameWorld extends Observable {
         this.ball.update();
 
         if(isLevelFinished()) {
+            ball.setCurrentGameBallState(ball.getGameBallStateStatic());
             SoundManager.getInstance().stop(SoundManager.bg);
             SoundManager.getInstance().play(SoundManager.victory);
         }
