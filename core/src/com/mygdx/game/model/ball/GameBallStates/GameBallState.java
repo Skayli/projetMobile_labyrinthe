@@ -1,4 +1,6 @@
-package com.mygdx.game.model.ball;
+package com.mygdx.game.model.ball.GameBallStates;
+
+import com.mygdx.game.model.ball.GameBall;
 
 /**
  * Classe abstraite représentant l'état de la GameBall
