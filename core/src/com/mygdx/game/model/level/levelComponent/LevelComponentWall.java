@@ -27,6 +27,8 @@ public class LevelComponentWall extends LevelComponent {
 
     @Override
     public void draw(VisitorWorld visitorWorld) {
-
+        for(Wall wall : this.walls) {
+            visitorWorld.draw(wall);
+        }
     }
 }

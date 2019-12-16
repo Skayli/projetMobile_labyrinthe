@@ -33,6 +33,10 @@ public class LevelComponentHole extends DecoratorLevelComponent {
 
     @Override
     public void draw(VisitorWorld visitorWorld) {
-
+        this.levelComponentDecore.draw(visitorWorld);
+        for(Hole hole : this.holes)
+        {
+            visitorWorld.draw(hole);
+        }
     }
 }
