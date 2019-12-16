@@ -24,13 +24,15 @@ public class GameWorld extends Observable {
 
     public GameWorld() {
         this.ball = new GameBall(this);
-        this.currentLevel = new Level1(this);
+        this.currentLevel = new Level2(this);
         SoundManager.getInstance().play(SoundManager.bg);
     }
 
     public void update() {
         //Déplacement de la bille et gestion des collision et des trous
         this.ball.update();
+        // Mise à jour des composants du niveau
+        this.getCurrentLevel().getLevelComponent().update();
 
         if(isLevelFinished() && ball.getCurrentGameBallState() == ball.getGameBallStateAlive()) {
             ball.setCurrentGameBallState(ball.getGameBallStateStatic());

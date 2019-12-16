@@ -34,16 +34,16 @@ public class GameBallStateAlive extends GameBallState {
         Cinematique.mouvementUniformémentAccéléré(this.gameBall.getPosition(), this.gameBall.getVelocity(), acceleration, 1);
         this.gameBall.getVelocity().ajoute(MecaniquePoint.freinageFrottement(this.gameBall.getWeight(), this.gameBall.getVelocity()));	//ajout des frottements
 
-        for(Wall wall : this.gameBall.getGame().getCurrentLevel().getWalls()) {
-            MaCollision.collisionBilleSegment(this.gameBall, wall);
-        }
-        for(Hole hole: this.gameBall.getGame().getCurrentLevel().getHoles())
-        {
-            if (MaCollision.collisionHole(this.gameBall, hole))
-            {
-                SoundManager.getInstance().play(SoundManager.death, .5f);
-                this.gameBall.setCurrentGameBallState(this.gameBall.getGameBallStateDead());
-            }
-        }
+//        for(Wall wall : this.gameBall.getGame().getCurrentLevel().getWalls()) {
+//            MaCollision.collisionBilleSegment(this.gameBall, wall);
+//        }
+//        for(Hole hole: this.gameBall.getGame().getCurrentLevel().getHoles())
+//        {
+//            if (MaCollision.collisionHole(this.gameBall, hole))
+//            {
+//                SoundManager.getInstance().play(SoundManager.death, .5f);
+//                this.gameBall.setCurrentGameBallState(this.gameBall.getGameBallStateDead());
+//            }
+//        }
     }
 }
