@@ -24,7 +24,7 @@ public class GameWorld extends Observable {
 
     public GameWorld() {
         this.ball = new GameBall(this);
-        this.currentLevel = new Level2(this);
+        this.currentLevel = new Level1(this);
         SoundManager.getInstance().play(SoundManager.bg);
     }
 
@@ -33,7 +33,6 @@ public class GameWorld extends Observable {
         this.ball.update();
 
         if(isLevelFinished() && ball.getCurrentGameBallState() == ball.getGameBallStateAlive()) {
-            System.out.println("enddddddddddddddddddddddddddddddddddd");
             ball.setCurrentGameBallState(ball.getGameBallStateStatic());
             SoundManager.getInstance().stop(SoundManager.bg);
             SoundManager.getInstance().play(SoundManager.victory);
