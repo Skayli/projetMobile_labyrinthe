@@ -27,9 +27,9 @@ public class GameBallStateDead extends GameBallState {
         Cinematique.mouvementUniformémentAccéléré(this.gameBall.getPosition(), this.gameBall.getVelocity(), new Vecteur(0,0), 1);
         this.gameBall.getVelocity().ajoute(MecaniquePoint.freinageFrottement(this.gameBall.getWeight()/5, this.gameBall.getVelocity()));	//ajout des frottements + up du poids car dans trou
 
-        for(Wall wall : this.gameBall.getGame().getCurrentLevel().getWalls()) {
-            MaCollision.collisionBilleSegment(this.gameBall, wall);
-        }
+//        for(Wall wall : this.gameBall.getGame().getCurrentLevel().getWalls()) {
+//            MaCollision.collisionBilleSegment(this.gameBall, wall);
+//        }
         if (this.gameBall.getRadius() <= 0)
         {
             this.gameBall.getGame().getCurrentLevel().resetBallPosition();

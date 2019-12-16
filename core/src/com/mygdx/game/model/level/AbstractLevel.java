@@ -1,10 +1,12 @@
 package com.mygdx.game.model.level;
 
+import com.badlogic.gdx.Game;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.ball.GameBall;
+import com.mygdx.game.model.level.levelComponent.LevelComponent;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,7 @@ public abstract class AbstractLevel implements iLevelState {
     protected ArrayList<Hole> holes; // liste des trous
     protected Vecteur initialBallPosition;
     protected Target target;
+    protected LevelComponent levelComponent; // Définira les composants présents dans le niveau (murs, trous, canon, bombe atomique, etc)
 
 
     public AbstractLevel(GameWorld gameWorld) {
@@ -55,6 +58,16 @@ public abstract class AbstractLevel implements iLevelState {
 
     public Target getTarget() {
         return target;
+    }
+
+    public GameWorld getGameWorld()
+    {
+        return this.gameWorld;
+    }
+
+    public LevelComponent getLevelComponent()
+    {
+        return this.levelComponent;
     }
 
     // ------------------------------------- \\
