@@ -1,7 +1,6 @@
 package com.mygdx.game.model.ball.GameBallStates;
 
 import com.mygdx.game.model.ball.GameBall;
-import com.mygdx.game.model.ball.GameBallState;
 
 /**
  * Classe GameBallStateStatic héritant de GameBallState

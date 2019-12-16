@@ -5,7 +5,6 @@ import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.MaCollision;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.ball.GameBall;
-import com.mygdx.game.model.ball.GameBallState;
 import com.mygdx.game.model.sound.SoundManager;
 
 import mesmaths.cinematique.Cinematique;

@@ -3,7 +3,6 @@ package com.mygdx.game.model.ball.GameBallStates;
 import com.mygdx.game.model.MaCollision;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.ball.GameBall;
-import com.mygdx.game.model.ball.GameBallState;
 import com.mygdx.game.model.color.Color;
 
 import mesmaths.cinematique.Cinematique;

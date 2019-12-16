@@ -1,6 +1,7 @@
 package com.mygdx.game.model.ball;
 
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.ball.GameBallStates.GameBallState;
 import com.mygdx.game.model.ball.GameBallStates.GameBallStateAlive;
 import com.mygdx.game.model.ball.GameBallStates.GameBallStateDead;
 import com.mygdx.game.model.ball.GameBallStates.GameBallStateStatic;
