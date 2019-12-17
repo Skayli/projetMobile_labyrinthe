@@ -11,6 +11,7 @@ public class SoundManager {
     public static Music victory;
     public static Sound hit;
     public static Sound death;
+    public static Sound cannon_shot;
 
     private SoundManager() {
 
@@ -28,6 +29,8 @@ public class SoundManager {
             hit  = Gdx.audio.newSound(Gdx.files.internal("bille_bille.wav"));
 
             death = Gdx.audio.newSound(Gdx.files.internal("death.wav"));
+
+            cannon_shot = Gdx.audio.newSound(Gdx.files.internal("cannon_shot.mp3"));
         }
 
         return instance;
