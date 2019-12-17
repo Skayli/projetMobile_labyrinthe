@@ -19,6 +19,11 @@ public class Cannon {
     private double seuilLeft;
     private double seuilRight;
 
+    private int seuilShotMin;
+    private int seuilShotMax;
+    private int currentShotSeuil;
+    private int timer;
+
     private CannonState currentState, stateTurnRight, stateTurnLeft;
 
     /**
@@ -29,12 +34,18 @@ public class Cannon {
     // --- Constructeurs --- \\
     // --------------------- \\
 
-    public Cannon(Vecteur position, double initialAngle, double seuilLeft, double seuilRight, boolean startTurningRight) {
+    public Cannon(Vecteur position, double initialAngle, int seuilLeft, int seuilRight, int seuilShotMin, int seuilShotMax, boolean startTurningRight) {
         this.position = position;
         this.angle = initialAngle;
         this.seuilLeft = seuilLeft;
         this.seuilRight = seuilRight;
         initStates(startTurningRight);
+
+        this.seuilShotMax = seuilShotMax;
+        this.seuilShotMin = seuilShotMin;
+
+        setNewSeuil();
+        this.timer = 0;
     }
 
     private void initStates(boolean startTurningRight) {
@@ -51,6 +62,18 @@ public class Cannon {
 
     public void update() {
         this.currentState.update();
+
+        timer++;
+        if(timer > currentShotSeuil) {
+            System.out.println("SHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
+            timer = 0;
+            setNewSeuil();
+        }
+    }
+
+    private void setNewSeuil() {
+        currentShotSeuil = (int)  (Math.random() * (seuilShotMax - seuilShotMin) + seuilShotMin);
+        System.out.println("Nouveau seuil de tir : " + currentShotSeuil);
     }
 
     // ------------------------- \\

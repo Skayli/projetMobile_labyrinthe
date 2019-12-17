@@ -11,7 +11,6 @@ public class CannonStateRight extends CannonState {
     @Override
     public void update() {
         cannon.setAngle(cannon.getAngle() - 1);
-        System.out.println("turning right");
 
         if(cannon.getAngle() < cannon.getSeuilRight()) {
             cannon.setCurrentState(cannon.getStateTurnLeft());
