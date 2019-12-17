@@ -43,11 +43,8 @@ public class DrawerGDX extends VisitorWorld {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
 
-
         batch.setProjectionMatrix(camera.combined);
         shape.setProjectionMatrix(camera.combined);
-
-        batch.begin();
 
         Gdx.gl20.glLineWidth(5);
 
@@ -62,6 +59,7 @@ public class DrawerGDX extends VisitorWorld {
 
         // Dessin des composants qui décorent le niveau courant
         game.getCurrentLevel().getLevelComponent().draw(this);
+
 
         //Dessin de la bille contrôlée par le joueur
         com.mygdx.game.model.color.Color billeColor = game.getBall().getColor();
@@ -80,7 +78,6 @@ public class DrawerGDX extends VisitorWorld {
         shape.circle((float) positionBille.x, (float) positionBille.y, (float) game.getBall().getRadius());
         shape.end();
 
-        batch.end();
     }
 
     public void draw(Wall wall)
@@ -100,9 +97,10 @@ public class DrawerGDX extends VisitorWorld {
 
     public void draw(Cannon cannon)
     {
+        batch.begin();
         Texture textureCannon = TextureFactory.getInstance().getTexture(cannon.getClass());
-        Sprite spriteCannon = new Sprite(textureCannon);
-        batch.draw(textureCannon, 50, 50, 100, 100);
+        batch.draw(textureCannon, 0, 0, 800, 521);
+        batch.end();
     }
 
     // ------------------------------------- \\
