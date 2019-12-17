@@ -21,10 +21,11 @@ public class LevelComponentHole extends DecoratorLevelComponent {
     @Override
     public void update() {
         this.levelComponentDecore.update();
-        if (MaCollision.collisionHole(this.level.getGameWorld().getBall(), hole))
+        if (MaCollision.collisionHole(this.level.getGameWorld().getBall(), hole) && this.level.getGameWorld().getBall().getCurrentGameBallState() == this.level.getGameWorld().getBall().getGameBallStateAlive())
         {
-            SoundManager.getInstance().play(SoundManager.death, .5f);
-            this.level.getGameWorld().getBall().setCurrentGameBallState(this.level.getGameWorld().getBall().getGameBallStateDead());
+//            SoundManager.getInstance().play(SoundManager.death, .5f);
+//            this.level.getGameWorld().getBall().setCurrentGameBallState(this.level.getGameWorld().getBall().getGameBallStateDead());
+            this.level.getGameWorld().gameOver();
         }
     }
 

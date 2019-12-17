@@ -1,9 +1,13 @@
 package com.mygdx.game.model.cannon;
 
+import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.ball.CannonBall;
 import com.mygdx.game.model.cannon.CannonStates.CannonState;
 import com.mygdx.game.model.cannon.CannonStates.CannonStateLeft;
 import com.mygdx.game.model.cannon.CannonStates.CannonStateRight;
+import com.mygdx.game.model.sound.SoundManager;
+
+import java.util.ArrayList;
 
 import mesmaths.geometrie.base.Vecteur;
 
@@ -12,9 +16,11 @@ import mesmaths.geometrie.base.Vecteur;
  */
 public class Cannon {
 
+    private GameWorld game;
+
     private double angle;
     private Vecteur position;
-    private CannonBall cannonBall; // bille tirée par le canon
+    private ArrayList<CannonBall> cannonBalls;
 
     private double seuilLeft;
     private double seuilRight;
@@ -23,6 +29,8 @@ public class Cannon {
     private int seuilShotMax;
     private int currentShotSeuil;
     private int timer;
+
+    private double turningSpeed;
 
     private CannonState currentState, stateTurnRight, stateTurnLeft;
 
@@ -34,7 +42,8 @@ public class Cannon {
     // --- Constructeurs --- \\
     // --------------------- \\
 
-    public Cannon(Vecteur position, double initialAngle, int seuilLeft, int seuilRight, int seuilShotMin, int seuilShotMax, boolean startTurningRight) {
+    public Cannon(GameWorld game, Vecteur position, double initialAngle, int seuilLeft, int seuilRight, int seuilShotMin, int seuilShotMax, boolean startTurningRight, double turningSpeed) {
+        this.game = game;
         this.position = position;
         this.angle = initialAngle;
         this.seuilLeft = seuilLeft;
@@ -46,6 +55,10 @@ public class Cannon {
 
         setNewSeuil();
         this.timer = 0;
+
+        this.cannonBalls = new ArrayList<>();
+
+        this.turningSpeed = turningSpeed;
     }
 
     private void initStates(boolean startTurningRight) {
@@ -63,9 +76,23 @@ public class Cannon {
     public void update() {
         this.currentState.update();
 
+        for(CannonBall cannonBall : cannonBalls) {
+            cannonBall.update();
+        }
+
         timer++;
         if(timer > currentShotSeuil) {
-            System.out.println("SHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT");
+            //Ajout d'une cannonBall dans la liste
+            CannonBall cannonBall = new CannonBall(game, this, this.position.copie());
+            double radian = angle * Math.PI / 180;
+            Vecteur dir = new Vecteur(Math.cos(radian), Math.sin(radian));
+            cannonBall.setVelocity(dir);
+            double multVelocity = Math.random() * (150-90) + 90;
+            cannonBall.getVelocity().multiplie(multVelocity);
+
+            cannonBalls.add(cannonBall);
+
+            SoundManager.getInstance().play(SoundManager.cannon_shot, .2f);
             timer = 0;
             setNewSeuil();
         }
@@ -73,7 +100,6 @@ public class Cannon {
 
     private void setNewSeuil() {
         currentShotSeuil = (int)  (Math.random() * (seuilShotMax - seuilShotMin) + seuilShotMin);
-        System.out.println("Nouveau seuil de tir : " + currentShotSeuil);
     }
 
     // ------------------------- \\
@@ -134,6 +160,22 @@ public class Cannon {
 
     public void setStateTurnLeft(CannonState stateTurnLeft) {
         this.stateTurnLeft = stateTurnLeft;
+    }
+
+    public ArrayList<CannonBall> getCannonBalls() {
+        return cannonBalls;
+    }
+
+    public void setCannonBalls(ArrayList<CannonBall> cannonBalls) {
+        this.cannonBalls = cannonBalls;
+    }
+
+    public double getTurningSpeed() {
+        return turningSpeed;
+    }
+
+    public void setTurningSpeed(double turningSpeed) {
+        this.turningSpeed = turningSpeed;
     }
 
     // ------------------------------ \\

@@ -10,7 +10,7 @@ public class CannonStateLeft extends CannonState {
 
     @Override
     public void update() {
-        cannon.setAngle(cannon.getAngle() + 1);
+        cannon.setAngle(cannon.getAngle() + cannon.getTurningSpeed());
 
         if(cannon.getAngle() > cannon.getSeuilLeft()) {
             cannon.setCurrentState(cannon.getStateTurnRight());

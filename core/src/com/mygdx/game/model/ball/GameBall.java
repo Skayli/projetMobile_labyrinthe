@@ -76,6 +76,10 @@ public class GameBall extends AbstractBall {
         this.velocity.y = 0;
     }
 
+    public boolean isAlive() {
+        return this.currentGameBallState == this.gameBallStateAlive;
+    }
+
     // -------------------------------- \\
     // --- Fin de la class GameBall --- \\
     // -------------------------------- \\

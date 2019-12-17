@@ -1,5 +1,6 @@
 package com.mygdx.game.view;
 
+import com.mygdx.game.model.laser.Laser;
 import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
@@ -19,6 +20,8 @@ public abstract class VisitorWorld {
     public abstract void draw(Hole hole);
 
     public abstract void draw(Cannon cannon);
+
+    public abstract void draw(Laser laser);
 
     // ------------------------------------- \\
     // --- Fin de la classe VisitorWorld --- \\

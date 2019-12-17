@@ -1,10 +1,12 @@
 package com.mygdx.game.model.level;
 
+import com.mygdx.game.model.laser.Laser;
 import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.level.levelComponent.LevelComponentCannon;
+import com.mygdx.game.model.level.levelComponent.LevelComponentLaser;
 import com.mygdx.game.model.level.levelComponent.LevelComponentWall;
 
 import java.util.ArrayList;
@@ -49,7 +51,14 @@ public class Level3 extends AbstractLevel {
 
         //Création du canon
         this.levelComponent = new LevelComponentWall(this, walls);
-        this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon(new Vecteur(1000,1000), 90, 180, 0, 180,300,true));
+        this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon(gameWorld, new Vecteur(500,500), 45, 80, 10, 180,300,true, 1));
+        this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon(gameWorld, new Vecteur(11500,7000), 225, 260, 190, 180,300,false, 2));
+
+        //Création de lasers
+        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 5000,500,5000,2000,60,120, 60,true));
+        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 6000,500,6000,2000,60,120, 30, true));
+        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 7000,500,7000,2000,60,120, 0,true));
+
 
         this.target = new Target(2000,5000,1500,1500);
     }

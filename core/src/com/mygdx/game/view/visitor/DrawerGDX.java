@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.mygdx.game.model.laser.Laser;
+import com.mygdx.game.model.ball.CannonBall;
 import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
@@ -40,6 +42,8 @@ public class DrawerGDX extends VisitorWorld {
     public void draw(GameWorld game) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+        Gdx.graphics.getGL20().glEnable(GL20.GL_BLEND);
+
 
         batch.setProjectionMatrix(camera.combined);
         shape.setProjectionMatrix(camera.combined);
@@ -95,12 +99,41 @@ public class DrawerGDX extends VisitorWorld {
 
     public void draw(Cannon cannon)
     {
+        //Dessin du cannon
         batch.begin();
         Sprite spriteCannon = TextureFactory.getInstance().getSprite(cannon.getClass());
         spriteCannon.setPosition((float) cannon.getPosition().x - spriteCannon.getWidth()/2, (float) cannon.getPosition().y - spriteCannon.getHeight()/2);
         spriteCannon.setRotation((float) cannon.getAngle());
         spriteCannon.draw(batch);
         batch.end();
+
+        //Dessin des billes du cannon
+        for(CannonBall cannonBall : cannon.getCannonBalls()) {
+            Color ballColor = new Color(cannonBall.getColor().getRed(), cannonBall.getColor().getGreen(), cannonBall.getColor().getBlue(), 1);
+            Vecteur positionBille = cannonBall.getPosition();
+
+            shape.setColor(ballColor);
+            shape.begin(ShapeRenderer.ShapeType.Filled);
+            shape.circle((float) positionBille.x, (float) positionBille.y, (float) cannonBall.getRadius());
+            shape.end();
+
+            //Dessin du contour de la bille
+            shape.setColor(Color.BLACK);
+            shape.begin(ShapeRenderer.ShapeType.Line);
+            shape.circle((float) positionBille.x, (float) positionBille.y, (float) cannonBall.getRadius());
+            shape.end();
+        }
+    }
+
+    @Override
+    public void draw(Laser laser) {
+        float ratio = (laser.isAlive() ? 1 : 0.3f);
+        Color laserColor = new Color(1,0,0, 0.5f);
+
+        shape.setColor(laserColor);
+        shape.begin(ShapeRenderer.ShapeType.Line);
+        shape.line((float)laser.getBeginning().x, (float) laser.getBeginning().y, (float) laser.getEnding().x, (float) laser.getEnding().y);
+        shape.end();
     }
 
     // ------------------------------------- \\

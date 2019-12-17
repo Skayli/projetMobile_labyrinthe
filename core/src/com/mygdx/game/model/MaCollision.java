@@ -16,7 +16,7 @@ import mesmaths.geometrie.base.Vecteur;
 public class MaCollision {
 
     public static boolean collisionBilleSegment(AbstractBall ball, Wall wall) {
-        if(collisionSegment(ball, wall)) {
+        if(collisionSegment(ball.getPosition(), ball.getRadius(), wall.getBeginning(), wall.getEnding())) {
             Vecteur projection = projectionI(ball, wall);
             Vecteur dir = new Vecteur(ball.getPosition().x - projection.x, ball.getPosition().y - projection.y);
             double vN = ball.getVelocity().produitScalaire(dir);
@@ -54,15 +54,15 @@ public class MaCollision {
         return false;
     }
 
-    public static boolean collisionSegment(AbstractBall ball, Wall wall) {
-        if(!collisionDroite(ball, wall)) {
+    public static boolean collisionSegment(Vecteur position, double radius, Vecteur beginning, Vecteur ending) {
+        if(!collisionDroite(position, radius, beginning, ending)) {
             return false;
         }
 
         Vecteur AB, AC, BC;
-        AB = new Vecteur(wall.getEnding().x - wall.getBeginning().x, wall.getEnding().y - wall.getBeginning().y);
-        AC = new Vecteur(ball.getPosition().x - wall.getBeginning().x, ball.getPosition().y - wall.getBeginning().y);
-        BC = new Vecteur(ball.getPosition().x - wall.getEnding().x, ball.getPosition().y - wall.getEnding().y);
+        AB = new Vecteur(ending.x - beginning.x, ending.y - beginning.y);
+        AC = new Vecteur(position.x - beginning.x, position.y - beginning.y);
+        BC = new Vecteur(position.x - ending.x, position.y - ending.y);
 
         double pscal1 = AB.x*AC.x + AB.y*AC.y;  // produit scalaire
         double pscal2 = (-AB.x)*BC.x + (-AB.y)*BC.y;  // produit scalaire
@@ -71,11 +71,11 @@ public class MaCollision {
         }
 
 
-        if(collisionPointCercle(wall.getBeginning(), ball)) {
+        if(collisionPointCercle(beginning, position, radius)) {
             return true;
         }
 
-        if(collisionPointCercle(wall.getEnding(), ball)) {
+        if(collisionPointCercle(ending, position, radius)) {
             return true;
         }
 
@@ -126,24 +126,25 @@ public class MaCollision {
         return v2;
     }
 
-    public static boolean collisionDroite(AbstractBall ball, Wall wall) {
-        Vecteur u = new Vecteur(wall.getEnding().x - wall.getBeginning().x, wall.getEnding().y - wall.getBeginning().y);
-        Vecteur AC = new Vecteur(ball.getPosition().x - wall.getBeginning().x, ball.getPosition().y - wall.getBeginning().y);
+    public static boolean collisionDroite(Vecteur position, double radius, Vecteur beginning, Vecteur ending) {
+        Vecteur u = new Vecteur(ending.x - beginning.x, ending.y - beginning.y);
+        Vecteur AC = new Vecteur(position.x - beginning.x, position.y - beginning.y);
         double numerateur = u.x * AC.y - u.y * AC.x;
         if(numerateur < 0) {
             numerateur = -numerateur;
         }
         double denominateur = Math.sqrt(u.x * u.x + u.y * u.y);
         double CI = numerateur/denominateur;
-        if(CI < ball.getRadius()) {
+        if(CI < radius) {
             return true;
         } else {
             return false;
         }
     }
 
-    public static boolean collisionPointCercle(Vecteur point, AbstractBall ball) {
-        return distCarre(point, ball.getPosition()) < ball.getRadius() * ball.getRadius();
+
+    public static boolean collisionPointCercle(Vecteur point, Vecteur position, double radius) {
+        return distCarre(point, position) < radius*radius;
     }
 
 
