@@ -98,8 +98,8 @@ public class DrawerGDX extends VisitorWorld {
     public void draw(Cannon cannon)
     {
         batch.begin();
-        Texture textureCannon = TextureFactory.getInstance().getTexture(cannon.getClass());
-        batch.draw(textureCannon, 0, 0, 800, 521);
+        Sprite spriteCannon = TextureFactory.getInstance().getSprite(cannon.getClass());
+        spriteCannon.draw(batch);
         batch.end();
     }
 

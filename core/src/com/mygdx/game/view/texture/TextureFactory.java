@@ -1,6 +1,7 @@
 package com.mygdx.game.view.texture;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.model.Cannon;
 import com.mygdx.game.model.GameWorld;
 
@@ -28,6 +29,10 @@ public class TextureFactory {
 
     public Texture getTexture(Class<?> c) {
         return textures.get(c).getTexture();
+    }
+
+    public Sprite getSprite(Class<?> c) {
+        return  textures.get(c).getSprite();
     }
 
 }
