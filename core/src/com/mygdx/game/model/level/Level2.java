@@ -4,6 +4,8 @@ import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
+import com.mygdx.game.model.level.levelComponent.LevelComponentHole;
+import com.mygdx.game.model.level.levelComponent.LevelComponentWall;
 
 import java.util.Vector;
 
@@ -49,6 +51,9 @@ public class Level2 extends AbstractLevel {
         this.holes.add(new Hole(7500,900,400));
         this.holes.add(new Hole(5000,5400,400));
         this.holes.add(new Hole(7500,6100,400));
+
+        // Définition du LevelComponent
+        this.levelComponent = new LevelComponentHole(new LevelComponentWall(this, walls), this, holes);
 
         this.target = new Target(2000,5000,1500,1500);
     }

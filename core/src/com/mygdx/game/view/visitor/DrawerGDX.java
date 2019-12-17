@@ -39,22 +39,12 @@ public class DrawerGDX extends VisitorWorld {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
 
 
-
         batch.setProjectionMatrix(camera.combined);
         shape.setProjectionMatrix(camera.combined);
 
         batch.begin();
 
         Gdx.gl20.glLineWidth(5);
-
-
-
-        //Dessin des trous
-        for(Hole hole : game.getCurrentLevel().getHoles()) {
-            shape.begin(ShapeRenderer.ShapeType.Filled);
-            shape.circle((float) hole.getPosition().x, (float) hole.getPosition().y, hole.getRadius());
-            shape.end();
-        }
 
         //Dessin de la cible
         com.mygdx.game.model.color.Color colorTarget = game.getCurrentLevel().getTarget().getColor();
@@ -64,6 +54,9 @@ public class DrawerGDX extends VisitorWorld {
         shape.begin(ShapeRenderer.ShapeType.Filled);
         shape.rect((float) target.getBottomLeft().x, (float) target.getBottomLeft().y, (float) target.getWidth(), (float) target.getHeight());
         shape.end();
+
+        // Dessin des composants qui décorent le niveau courant
+        game.getCurrentLevel().getLevelComponent().draw(this);
 
         //Dessin de la bille contrôlée par le joueur
         com.mygdx.game.model.color.Color billeColor = game.getBall().getColor();
@@ -82,20 +75,22 @@ public class DrawerGDX extends VisitorWorld {
         shape.circle((float) positionBille.x, (float) positionBille.y, (float) game.getBall().getRadius());
         shape.end();
 
-
-
-        //Dessin des murs du level
-        for(Wall wall : game.getCurrentLevel().getWalls()) {
-            shape.setColor(Color.BLACK);
-            shape.begin(ShapeRenderer.ShapeType.Line);
-            shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
-            shape.end();
-        }
-
-
-
-
         batch.end();
+    }
+
+    public void draw(Wall wall)
+    {
+        shape.setColor(Color.BLACK);
+        shape.begin(ShapeRenderer.ShapeType.Line);
+        shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
+        shape.end();
+    }
+
+    public void draw(Hole hole)
+    {
+        shape.begin(ShapeRenderer.ShapeType.Filled);
+        shape.circle((float) hole.getPosition().x, (float) hole.getPosition().y, hole.getRadius());
+        shape.end();
     }
 
     // ------------------------------------- \\
