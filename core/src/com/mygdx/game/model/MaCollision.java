@@ -1,6 +1,7 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.model.ball.AbstractBall;
@@ -17,26 +18,37 @@ public class MaCollision {
     public static boolean collisionBilleSegment(AbstractBall ball, Wall wall) {
         if(collisionSegment(ball, wall)) {
             Vecteur projection = projectionI(ball, wall);
-            Vecteur normale = getNormale(ball, wall);
-            Vecteur rebond = calculerVecteurV2(ball.getVelocity(), normale);
-
-
-            ball.setVelocity(rebond);
-
-
-            //On remonte la bille pour éviter qu'elle soit coincée dans le mur
-            //rayon.ci * vecteur divisé par norme
             Vecteur dir = new Vecteur(ball.getPosition().x - projection.x, ball.getPosition().y - projection.y);
-            double normeDir = dir.norme();
-            dir.x /= normeDir;
-            dir.y /= normeDir;
+            double vN = ball.getVelocity().produitScalaire(dir);
 
-            dir.multiplie(ball.getRadius() - Math.sqrt(distCarre(ball.getPosition(), projection)));
+            if(vN < 0) {
+                //Calcul rebond
+                Vecteur normale = getNormale(ball, wall);
+                double pscal = (ball.getVelocity().x*normale.x + ball.getVelocity().y*normale.y);
+                Vecteur rebond = new Vecteur(ball.getVelocity().x-2*pscal*normale.x, ball.getVelocity().y-2*pscal*normale.y);
+                ball.setVelocity(rebond);
 
-            //Nouveau centre = ancien centre + dir*rayon-CI
-            ball.setPosition(ball.getPosition().somme(dir));
+                boolean playSound = true;
 
-            return true;
+
+                //Ressort du mur pou éviter que la bille ne s'enfonce trop
+                double k = 0.25;
+                double epsilone = 2;
+                if(vN > -3085) {
+                    double normeDir = dir.norme();
+                    dir.multiplie(1/normeDir);
+                    dir.multiplie(k);
+                    dir.multiplie(epsilone);
+                    ball.getVelocity().ajoute(dir);
+                    playSound = false;
+                }
+
+                //jouer son proportionnel au rebond
+                if(playSound == true)
+                    SoundManager.getInstance().play(SoundManager.hit, (float) Math.abs(pscal) / 100);
+
+                return true;
+            }
         }
 
         return false;
