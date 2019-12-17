@@ -1,5 +1,6 @@
 package com.mygdx.game.view;
 
+import com.mygdx.game.model.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Wall;
@@ -16,6 +17,8 @@ public abstract class VisitorWorld {
     public abstract void draw(Wall wall);
 
     public abstract void draw(Hole hole);
+
+    public abstract void draw(Cannon cannon);
 
     // ------------------------------------- \\
     // --- Fin de la classe VisitorWorld --- \\
