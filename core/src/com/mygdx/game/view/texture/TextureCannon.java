@@ -10,7 +10,7 @@ public class TextureCannon implements ITexturable {
 
     public TextureCannon()
     {
-        texture = new Texture(Gdx.files.internal("cannon.png"));
+        texture = new Texture("cannon.png");
     }
 
     @Override

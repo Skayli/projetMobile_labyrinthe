@@ -27,7 +27,7 @@ public class Level3 extends AbstractLevel {
         this.initialBallPosition = new Vecteur(1250, GameWorld.HEIGHT-1000);
         gameWorld.getBall().setPosition(this.initialBallPosition);
 
-        double precision = 5;
+        double precision = 10;
 
         //Création des murs du level 3
         walls.add(Wall.createWall(500,2000, 500, 6500));
