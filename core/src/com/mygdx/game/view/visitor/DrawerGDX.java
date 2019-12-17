@@ -15,6 +15,7 @@ import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.view.VisitorWorld;
 import com.mygdx.game.view.texture.TextureCannon;
+import com.mygdx.game.view.texture.TextureFactory;
 
 import mesmaths.geometrie.base.Vecteur;
 
@@ -99,9 +100,9 @@ public class DrawerGDX extends VisitorWorld {
 
     public void draw(Cannon cannon)
     {
-        Texture textureCannon = new Texture(Gdx.files.internal("cannon.png"));
+        Texture textureCannon = TextureFactory.getInstance().getTexture(cannon.getClass());
         Sprite spriteCannon = new Sprite(textureCannon);
-//        batch.draw(spriteCannon, 50, 50, 100, 100);
+        batch.draw(textureCannon, 50, 50, 100, 100);
     }
 
     // ------------------------------------- \\

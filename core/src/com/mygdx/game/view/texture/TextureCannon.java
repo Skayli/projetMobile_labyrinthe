@@ -4,14 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.model.Cannon;
 
-public class TextureCannon  {
+public class TextureCannon implements ITexturable {
 
-    private Cannon cannon;
     private Texture texture;
 
-    public TextureCannon(Cannon cannon)
+    public TextureCannon()
     {
-        this.cannon = cannon;
         texture = new Texture(Gdx.files.internal("cannon.png"));
+    }
+
+    @Override
+    public Texture getTexture() {
+        return texture;
     }
 }
