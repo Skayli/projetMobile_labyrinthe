@@ -16,11 +16,12 @@ public class LevelComponentCannon extends DecoratorLevelComponent {
 
     @Override
     public void update() {
-
+        this.levelComponentDecore.update();
     }
 
     @Override
     public void draw(VisitorWorld visitorWorld) {
-
+        this.levelComponentDecore.draw(visitorWorld);
+        visitorWorld.draw(this.cannon);
     }
 }
