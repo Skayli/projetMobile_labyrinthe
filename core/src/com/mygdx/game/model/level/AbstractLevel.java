@@ -18,8 +18,6 @@ import mesmaths.geometrie.base.Vecteur;
 public abstract class AbstractLevel implements iLevelState {
 
     protected GameWorld gameWorld; // sert à initialiser la position de la bille à chaque niveau
-    protected ArrayList<Wall> walls; // liste des murs
-    protected ArrayList<Hole> holes; // liste des trous
     protected Vecteur initialBallPosition;
     protected Target target;
     protected LevelComponent levelComponent; // Définira les composants présents dans le niveau (murs, trous, canon, bombe atomique, etc)
@@ -27,8 +25,6 @@ public abstract class AbstractLevel implements iLevelState {
 
     public AbstractLevel(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
-        this.walls = new ArrayList<>();
-        this.holes = new ArrayList<>();
 
         this.gameWorld.getBall().resetVelocity();
     }
@@ -47,14 +43,6 @@ public abstract class AbstractLevel implements iLevelState {
     // --------------- \\
     // --- Getters --- \\
     // --------------- \\
-
-    public ArrayList<Wall> getWalls() {
-        return walls;
-    }
-
-    public ArrayList<Hole> getHoles() {
-        return holes;
-    }
 
     public Target getTarget() {
         return target;
