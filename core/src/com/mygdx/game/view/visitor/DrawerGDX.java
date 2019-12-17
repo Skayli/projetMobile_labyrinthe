@@ -4,17 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.mygdx.game.model.Cannon;
+import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.view.VisitorWorld;
-import com.mygdx.game.view.texture.TextureCannon;
 import com.mygdx.game.view.texture.TextureFactory;
 
 import mesmaths.geometrie.base.Vecteur;
@@ -99,6 +97,8 @@ public class DrawerGDX extends VisitorWorld {
     {
         batch.begin();
         Sprite spriteCannon = TextureFactory.getInstance().getSprite(cannon.getClass());
+        spriteCannon.setPosition((float) cannon.getPosition().x - spriteCannon.getWidth()/2, (float) cannon.getPosition().y - spriteCannon.getHeight()/2);
+        spriteCannon.setRotation((float) cannon.getAngle());
         spriteCannon.draw(batch);
         batch.end();
     }
