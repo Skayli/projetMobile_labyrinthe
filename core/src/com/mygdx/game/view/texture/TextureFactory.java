@@ -2,8 +2,7 @@ package com.mygdx.game.view.texture;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.model.Cannon;
-import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.cannon.Cannon;
 
 import java.util.HashMap;
 

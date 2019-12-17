@@ -1,9 +1,7 @@
 package com.mygdx.game.view.texture;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.model.Cannon;
 
 public class TextureCannon implements ITexturable {
 

@@ -1,6 +1,6 @@
 package com.mygdx.game.model.level;
 
-import com.mygdx.game.model.Cannon;
+import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
@@ -49,7 +49,7 @@ public class Level3 extends AbstractLevel {
 
         //Création du canon
         this.levelComponent = new LevelComponentWall(this, walls);
-        this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon());
+        this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon(new Vecteur(1000,1000), 90, 180, 0, true));
 
         this.target = new Target(2000,5000,1500,1500);
     }

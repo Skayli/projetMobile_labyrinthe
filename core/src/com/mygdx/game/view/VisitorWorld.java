@@ -1,6 +1,6 @@
 package com.mygdx.game.view;
 
-import com.mygdx.game.model.Cannon;
+import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Wall;

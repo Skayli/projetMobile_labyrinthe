@@ -1,6 +1,6 @@
 package com.mygdx.game.model.level.levelComponent;
 
-import com.mygdx.game.model.Cannon;
+import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.level.AbstractLevel;
 import com.mygdx.game.view.VisitorWorld;
 
@@ -17,6 +17,7 @@ public class LevelComponentCannon extends DecoratorLevelComponent {
     @Override
     public void update() {
         this.levelComponentDecore.update();
+        cannon.update();
     }
 
     @Override
