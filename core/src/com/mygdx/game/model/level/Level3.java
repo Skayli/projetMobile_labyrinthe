@@ -100,9 +100,9 @@ public class Level3 extends AbstractLevel {
         this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon(gameWorld, new Vecteur(11500,7000), 225, 260, 190, 180,300,false, 2));
 
         //Création de lasers
-        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 5000,500,5000,2000,60,120, 60,true));
-        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 6000,500,6000,2000,60,120, 30, true));
-        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 7000,500,7000,2000,60,120, 0,true));
+        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 5000,500,5000,1750,60,120, 60,true));
+        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 6000,500,6000,1750,60,120, 30, true));
+        this.levelComponent = new LevelComponentLaser(this.levelComponent, this, new Laser(gameWorld, 7000,500,7000,1750,60,120, 0,true));
     }
 
     public void update() {

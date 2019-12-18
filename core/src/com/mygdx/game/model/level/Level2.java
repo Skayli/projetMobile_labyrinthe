@@ -89,13 +89,13 @@ public class Level2 extends AbstractLevel {
 
         // Définition du LevelComponent
         this.levelComponent = new LevelComponentWall(this, walls);
-        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(3500,3500,750));
-        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10000,2000,750));
-        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10000,5000,750));
-        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(5000,1600,400));
-        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(7500,900,400));
-        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(5000,5400,400));
-        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(7500,6100,400));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(3000,3750,750));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10250,2000,750));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10250,5500,750));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(5000,1400,350));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(7500,850,350));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(7500,6650,350));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(5000,6100,350));
     }
 
 
