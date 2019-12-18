@@ -17,6 +17,8 @@ import com.mygdx.game.model.Wall;
 import com.mygdx.game.view.VisitorWorld;
 import com.mygdx.game.view.texture.TextureFactory;
 
+import java.util.ArrayList;
+
 import mesmaths.geometrie.base.Vecteur;
 
 /**
@@ -44,6 +46,7 @@ public class DrawerGDX extends VisitorWorld {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
         Gdx.graphics.getGL20().glEnable(GL20.GL_BLEND);
 
+        Gdx.gl.glCullFace(GL20.GL_FRONT);
 
         batch.setProjectionMatrix(camera.combined);
         shape.setProjectionMatrix(camera.combined);
@@ -82,13 +85,18 @@ public class DrawerGDX extends VisitorWorld {
 
     }
 
-    public void draw(Wall wall)
+    public void draw(ArrayList<Wall> walls)
     {
         shape.setColor(Color.BLACK);
         shape.begin(ShapeRenderer.ShapeType.Line);
-        shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
+        for (Wall wall : walls)
+        {
+            shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
+        }
         shape.end();
     }
+
+
 
     public void draw(Hole hole)
     {

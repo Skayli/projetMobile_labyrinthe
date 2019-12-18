@@ -6,6 +6,8 @@ import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Wall;
 
+import java.util.ArrayList;
+
 /**
  * Classe abstraite utilisé pour le design pattern Visitor afin de dessiner une bille avec la librairie graphique de son choix
  */
@@ -15,7 +17,7 @@ public abstract class VisitorWorld {
 
     public abstract void draw(GameWorld game);
 
-    public abstract void draw(Wall wall);
+    public abstract void draw(ArrayList<Wall> walls);
 
     public abstract void draw(Hole hole);
 
