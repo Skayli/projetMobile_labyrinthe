@@ -136,12 +136,16 @@ public class DrawerGDX extends VisitorWorld {
     @Override
     public void draw(Laser laser) {
         float ratio = (laser.isAlive() ? 1 : 0.3f);
-        Color laserColor = new Color(1,0,0, 0.5f);
+        Color laserColor = new Color(1,0,0, ratio);
+        Gdx.gl20.glEnable(GL20.GL_BLEND);
+        Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
         shape.setColor(laserColor);
         shape.begin(ShapeRenderer.ShapeType.Line);
         shape.line((float)laser.getBeginning().x, (float) laser.getBeginning().y, (float) laser.getEnding().x, (float) laser.getEnding().y);
         shape.end();
+
+        Gdx.gl20.glDisable(GL20.GL_BLEND);
     }
 
     // ------------------------------------- \\

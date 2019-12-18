@@ -23,8 +23,6 @@ public class LevelComponentLaser extends DecoratorLevelComponent {
     @Override
     public void draw(VisitorWorld visitorWorld) {
         this.levelComponentDecore.draw(visitorWorld);
-        if(laser.isAlive()) {
-            visitorWorld.draw(laser);
-        }
+        visitorWorld.draw(laser);
     }
 }
