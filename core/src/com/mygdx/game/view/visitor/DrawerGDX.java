@@ -17,6 +17,8 @@ import com.mygdx.game.model.Wall;
 import com.mygdx.game.view.VisitorWorld;
 import com.mygdx.game.view.texture.TextureFactory;
 
+import java.util.ArrayList;
+
 import mesmaths.geometrie.base.Vecteur;
 
 /**
@@ -83,13 +85,18 @@ public class DrawerGDX extends VisitorWorld {
 
     }
 
-    public void draw(Wall wall)
+    public void draw(ArrayList<Wall> walls)
     {
         shape.setColor(Color.BLACK);
         shape.begin(ShapeRenderer.ShapeType.Line);
-        shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
+        for (Wall wall : walls)
+        {
+            shape.line((float) wall.getBeginning().x, (float) wall.getBeginning().y, (float) wall.getEnding().x, (float) wall.getEnding().y);
+        }
         shape.end();
     }
+
+
 
     public void draw(Hole hole)
     {

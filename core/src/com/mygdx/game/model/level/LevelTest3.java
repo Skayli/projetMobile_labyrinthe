@@ -1,17 +1,19 @@
 package com.mygdx.game.model.level;
 
 import com.mygdx.game.model.GameWorld;
+import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
+import com.mygdx.game.model.level.levelComponent.LevelComponentHole;
 import com.mygdx.game.model.level.levelComponent.LevelComponentWall;
 
 import java.util.ArrayList;
 
 import mesmaths.geometrie.base.Vecteur;
 
-public class LevelTest2 extends AbstractLevel {
+public class LevelTest3 extends AbstractLevel {
 
-    public LevelTest2(GameWorld gameWorld)
+    public LevelTest3(GameWorld gameWorld)
     {
         super(gameWorld);
 
@@ -21,7 +23,7 @@ public class LevelTest2 extends AbstractLevel {
         this.initialBallPosition = new Vecteur(1250, 6500);
         gameWorld.getBall().setPosition(this.initialBallPosition);
 
-        double precision = 8;
+        double precision = 50;
 
         //Création des murs du level Test 2
         // mur gauche
@@ -51,6 +53,8 @@ public class LevelTest2 extends AbstractLevel {
         walls.addAll(Wall.createCurve(new Vecteur(1750,2750), new Vecteur(2750,1750), new Vecteur(1750,1750), precision));
         // curve vide 1 haut gauche
         walls.addAll(Wall.createCurve(new Vecteur(2750,2250), new Vecteur(1750,3250), new Vecteur(1750,2250), precision));
+        // curve vide 1 cote
+//        walls.addAll(Wall.createCurve(new Vecteur(9750,1750), new Vecteur(9750,2250), new Vecteur(10375,2000), precision));
         // curve vide 1 cote bas
         walls.addAll(Wall.createCurve(new Vecteur(9750,1750), new Vecteur(10250,2000), new Vecteur(10250,1750), precision));
         // curve vide 1 cote haut
@@ -83,10 +87,17 @@ public class LevelTest2 extends AbstractLevel {
 
         // Définition du LevelComponent
         this.levelComponent = new LevelComponentWall(this, walls);
+//        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(3500,3500,750));
+//        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10000,2000,750));
+//        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10000,5000,750));
+//        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(5000,1600,400));
+//        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(7500,900,400));
+//        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(5000,5400,400));
+//        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(7500,6100,400));
     }
 
     @Override
     public AbstractLevel getNextLevel() {
-        return new Level3(this.gameWorld);
+        return new LevelTest1(this.gameWorld);
     }
 }

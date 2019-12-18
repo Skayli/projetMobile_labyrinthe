@@ -5,6 +5,7 @@ import com.mygdx.game.model.level.AbstractLevel;
 import com.mygdx.game.model.level.Level3;
 import com.mygdx.game.model.level.LevelTest1;
 import com.mygdx.game.model.level.LevelTest2;
+import com.mygdx.game.model.level.LevelTest3;
 import com.mygdx.game.model.sound.SoundManager;
 
 import java.util.Observable;
@@ -24,7 +25,7 @@ public class GameWorld extends Observable {
 
     public GameWorld() {
         this.ball = new GameBall(this);
-        this.currentLevel = new LevelTest2(this);
+        this.currentLevel = new LevelTest3(this);
 
         SoundManager.getInstance().play(SoundManager.bg);
     }
