@@ -1,11 +1,13 @@
 package com.mygdx.game.model.level;
 
+import com.mygdx.game.model.Hole;
 import com.mygdx.game.model.laser.Laser;
 import com.mygdx.game.model.cannon.Cannon;
 import com.mygdx.game.model.GameWorld;
 import com.mygdx.game.model.Target;
 import com.mygdx.game.model.Wall;
 import com.mygdx.game.model.level.levelComponent.LevelComponentCannon;
+import com.mygdx.game.model.level.levelComponent.LevelComponentHole;
 import com.mygdx.game.model.level.levelComponent.LevelComponentLaser;
 import com.mygdx.game.model.level.levelComponent.LevelComponentWall;
 
@@ -94,8 +96,14 @@ public class Level3 extends AbstractLevel {
         // Définition du LevelComponent
         this.levelComponent = new LevelComponentWall(this, walls);
 
+        //Création des trous
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(3000,3750,750));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10250,2000,750));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(10250,5500,750));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(7500,6650,350));
+        this.levelComponent = new LevelComponentHole(this.levelComponent, this, new Hole(5000,6100,350));
+
         //Création du canon
-        this.levelComponent = new LevelComponentWall(this, walls);
         this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon(gameWorld, new Vecteur(500,500), 45, 80, 10, 180,300,true, 1));
         this.levelComponent = new LevelComponentCannon(this.levelComponent, this, new Cannon(gameWorld, new Vecteur(11500,7000), 225, 260, 190, 180,300,false, 2));
 
